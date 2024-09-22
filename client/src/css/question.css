@@ -1,0 +1,56 @@
+.container1 {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #3e3e3e;
+  }
+  
+  .content {
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left; 
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="time"],
+  input[type="date"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #3e3e3e;
+    border-radius: 5px;
+    margin: 0 auto;
+    display: block; 
+  }
+  
+  form button {
+    background-color: #646464;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block; 
+    margin: 20px auto; 
+    width: 100%;
+  }
+  
+  button:hover {
+    background-color: #2d2d2d;
+  }
+  
