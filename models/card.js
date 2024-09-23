@@ -9,6 +9,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  summery:{
+    type: String,
+    required: true,
+  },
   image: {
     type: String,
   },

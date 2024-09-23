@@ -1,81 +1,91 @@
 .login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; 
-    background-color: #f5f5f5; 
-  }
-  
-  .login h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333; 
-  }
-  
-  .loginform {
-    background-color: #fff; 
-    padding: 20px;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    width: 300px; /* Fixed width */
-  }
-  
-  .login input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0; /* Spacing between inputs */
-    border: 1px solid #ccc; /* Light border */
-    border-radius: 4px; /* Rounded corners for inputs */
-    font-size: 16px;
-  }
-  
-  .login input:focus {
-    border-color: #007bff; /* Blue border on focus */
-    outline: none; /* Remove default outline */
-  }
-  
-  .login button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff; /* Blue button */
-    color: #fff; /* White text */
-    border: none; /* Remove default border */
-    border-radius: 4px; /* Rounded corners for button */
-    font-size: 16px;
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition */
-  }
-  
-  .login button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-  }
-  
-  .contents {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
-    width: 200px; 
-    padding: 20px; 
-    cursor: pointer; /* Change cursor to pointer */
-  }
-  
-  .contents h2 {
-    margin: 0; /* Remove default margin */
-    font-size: 24px; /* Font size for titles */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
-  }
-  
-  .contents h2:hover {
-    background-color: #007bff; /* Blue background on hover */
-    color: white; /* Change text color on hover */
-  }
-  
-  .login-title {
-    color: #007bff; /* Optional color for Login title */
-  }
-  
-  .signup-title {
-    color: #28a745; /* Optional color for Sign Up title */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #000000;
+  color: white;
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.login .container {
+  width: 950px;
+  height: 650px;
+  border: 5px solid green;
+  display: flex;
+}
+.content1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 450px;
+  height: 100%;
+}
+.content2 {
+  flex-direction: column;
+  width: 450px;
+  height: 100%;
+  margin-top: 150px;
+}
+.content1 img {
+  width: 350px;
+  height: 350px;
+}
+.content1 h1 {
+  font-size: 65px;
+}
+.content2 form {
+  display: contents;
+  margin-left: 1px;
+}
+.content2 .title {
+  display: flex;
+}
+.content2 button{
+  width: 235px;
+}
+.content2 .title .button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  background-color: #000000;
+  width: 175px;
+  height: 55px;
+  color: white;
+  border: transparent;
+}
+ .select {
+  background-color: rgb(62, 61, 61);
+  font-size: 25px;
+  color: white;
+  border: transparent;
+}
+.content2 input[type="email"],
+.content2 input[type="password"],.content2 input[type="text"] {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border 0.3s;
+  width: 350px;
+  margin-left: 5px;
+  border-radius: 20px;
+}
+.content2 label {
+  font-size: 25px;
+  color: #ffffff;
+  margin-bottom: 10px;
+  display: block;
+  margin-left: 5px;
+}
+.content2 .submit {
+  width: 370px;
+  margin-left: 10px;
+  border-radius: 20px;
+}

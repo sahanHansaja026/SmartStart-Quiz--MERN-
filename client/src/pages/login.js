@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../css/login.css";
+import Upload from "../images/login.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -24,7 +25,7 @@ function Login() {
       localStorage.setItem("token", response.data.token);
 
       // Navigate to the home page upon successful login
-      navigate("/add");
+      navigate("/home");
     } catch (error) {
       console.error("Login failed", error);
       if (error.response) {
@@ -41,37 +42,48 @@ function Login() {
 
   return (
     <div className="login">
-      <div className="contents">
-        <h2
-          className="title login-title"
-          onClick={() => handleNavigate("/login")}
-        >
-          Login
-        </h2>
-        <h2
-          className="title signup-title"
-          onClick={() => handleNavigate("/register")}
-        >
-          Sign Up
-        </h2>
+      <div className="container">
+        <div className="content1">
+          <h1>Welcome</h1>
+          <img src={Upload} alt="Example" />
+        </div>
+        <div className="content2">
+          <div className="title">
+            <button className="select" onClick={() => handleNavigate("/")}>Login</button>
+            <button
+              className="button"
+              onClick={() => handleNavigate("/register")}
+            >
+              Register
+            </button>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <label>
+              Email Address :-
+              <br />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Password :-
+              <br />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </label>
+            <button className="submit" type="submit">Login</button>
+          </form>
+        </div>
       </div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
     </div>
   );
 }

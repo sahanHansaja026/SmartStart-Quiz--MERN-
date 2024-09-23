@@ -5,8 +5,9 @@ const bodyParser = require('body-parser');
 
 // Import routes
 const postRouter = require('./routes/question');
-const cardRouter = require('./routes/card')  // Existing question routes
-const authRoutes = require('./routes/auth');  // New auth routes
+const cardRouter = require('./routes/card')  
+const authRoutes = require('./routes/auth');
+const profileRouter = require('./routes/profile');  
 
 const app = express();
 const PORT = process.env.PORT || 9000;
@@ -16,8 +17,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use( postRouter); 
-app.use(cardRouter);// Existing questions route
-// Database Connection
+app.use(cardRouter);
+app.use(profileRouter);
+
 mongoose.connect('mongodb://localhost:27017/quiz_system', {
   useNewUrlParser: true,
   useUnifiedTopology: true,

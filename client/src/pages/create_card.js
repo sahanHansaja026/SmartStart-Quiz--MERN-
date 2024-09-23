@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import authService from "../services/authService"; // Import the auth service to get user data
 import "../css/input.css";
 
 class CreateCard extends Component {
@@ -8,20 +9,33 @@ class CreateCard extends Component {
     this.state = {
       posts: [],
       newPost: {
-        email: "",
         title: "",
+        summery: "",
         image: null,
       },
+      userEmail: "",  // Store user email separately
     };
   }
 
-  componentDidMount() {
-    this.retrievePosts();
+  async componentDidMount() {
+    await this.fetchUserData();  // Fetch user email
+    this.retrievePosts();  // Fetch posts
+  }
+
+  async fetchUserData() {
+    try {
+      const userData = await authService.getUserData(); // Fetch user data
+      this.setState({
+        userEmail: userData.email,  // Store email in a separate state
+      });
+    } catch (error) {
+      console.error("Failed to fetch user data", error);
+    }
   }
 
   retrievePosts() {
     axios
-      .get("http://localhost:9000/posts") // Ensure this matches your backend route
+      .get("http://localhost:9000/posts") // Adjust your backend route if necessary
       .then((res) => {
         if (res.data.success) {
           this.setState({
@@ -59,16 +73,17 @@ class CreateCard extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { email, title, image } = this.state.newPost;
-    if (!email || !title || !image) {
+    const { title, summery, image } = this.state.newPost;
+    if (!title || !summery || !image) {
       alert("Please fill in all required fields.");
       return;
     }
 
     const formData = new FormData();
-    for (let key in this.state.newPost) {
-      formData.append(key, this.state.newPost[key]);
-    }
+    formData.append("email", this.state.userEmail);  // Add the email separately
+    formData.append("title", title);
+    formData.append("summery", summery);
+    formData.append("image", image);
 
     axios
       .post("http://localhost:9000/post/save", formData, {
@@ -81,8 +96,8 @@ class CreateCard extends Component {
           console.log("Post added successfully");
           this.setState({
             newPost: {
-              email: "",
               title: "",
+              summery: "",
               image: null,
             },
           });
@@ -103,18 +118,6 @@ class CreateCard extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="box">
               <label>
-                Email:
-                <br />
-                <input
-                  type="email"
-                  name="email"
-                  value={this.state.newPost.email}
-                  onChange={this.handleChange}
-                  required
-                />
-              </label>
-              <br />
-              <label>
                 Title:
                 <br />
                 <input
@@ -126,6 +129,19 @@ class CreateCard extends Component {
                 />
               </label>
             </div>
+            <br />
+            <label>
+              Add Summary about your Quiz:
+              <br />
+              <textarea
+                type="text"
+                name="summery"
+                value={this.state.newPost.summery}
+                onChange={this.handleChange}
+                placeholder="Add Summary about quiz"
+                required
+              />
+            </label>
             <br />
             <label>
               Image:
