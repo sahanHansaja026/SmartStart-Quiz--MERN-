@@ -1,0 +1,73 @@
+/* quiz.css */
+
+body {
+    background-color: #121212; /* Dark background */
+    color: white; /* White text color */
+    font-family: 'Arial', sans-serif; /* Default font family */
+  }
+  
+  .quiz-container {
+    max-width: 800px; /* Max width for the quiz container */
+    margin: auto; /* Center the container */
+    padding: 20px; /* Padding around the container */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #1e1e1e; /* Slightly lighter dark background */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
+  }
+  
+  .quiz-title {
+    text-align: center; /* Centered title */
+    font-size: 2.5em; /* Large title font size */
+    color: #00ff00; /* Bright green color for title */
+  }
+  
+  .quiz-subtitle {
+    margin-top: 20px; /* Space above subtitle */
+    font-size: 1.5em; /* Subtitle font size */
+    color: #00ff00; /* Bright green color for subtitle */
+  }
+  
+  .quiz-question {
+    margin: 20px 0; /* Margin around the question section */
+    padding: 10px; /* Padding inside question section */
+    border: 2px solid #00ff00; /* Green border for the question */
+    border-radius: 5px; /* Rounded corners for question box */
+  }
+  
+  .quiz-answers {
+    margin-top: 10px; /* Space above answers */
+    font-size: 1.2em; /* Slightly larger font size for answers */
+  }
+  
+  .navigation-buttons {
+    display: flex; /* Flexbox layout for buttons */
+    justify-content: space-between; /* Space between buttons */
+    margin-top: 20px; /* Space above buttons */
+  }
+  
+  .previous-button, .next-button {
+    background-color: #00ff00; /* Green button background */
+    color: black; /* Black text color for buttons */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding inside buttons */
+    font-size: 1.2em; /* Button font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Transition effect */
+  }
+  
+  .previous-button:hover, .next-button:hover {
+    background-color: #008000; /* Darker green on hover */
+  }
+  
+  .error {
+    color: red; /* Red color for error messages */
+    text-align: center; /* Center error message */
+    margin-top: 20px; /* Space above error message */
+  }
+  
+  .loading {
+    text-align: center; /* Center loading message */
+    margin-top: 20px; /* Space above loading message */
+  }
+  

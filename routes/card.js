@@ -18,27 +18,29 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Save post
-routers.post("/post/save", upload.single("image"), async (req, res) => {
+routers.post("/posts/save", upload.single("image"), async (req, res) => {
   try {
-    const { email, title,summery } = req.body;
+    const { email,card_id, title, summery } = req.body;
 
-    if (!email || !title || !summery|| !req.file) {
+    if (!email || !card_id ||!title || !summery || !req.file) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    const imagePath = req.file.filename;
+    const imagePath = req.file.filename; // Store just the filename or full path as needed
 
     const newPost = new Posts({
       email,
       title,
       summery,
-      image: imagePath,
+      card_id,
+      image: imagePath, // Ensure your frontend can access this
     });
 
     await newPost.save();
     return res.status(200).json({ success: "Post saved successfully" });
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    console.error("Error saving post:", error); // Log error for debugging
+    return res.status(500).json({ error: "Server error, please try again" });
   }
 });
 
@@ -51,10 +53,25 @@ routers.get("/posts", async (req, res) => {
       existingPosts: posts,
     });
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    console.error("Error fetching posts:", error); // Log error for debugging
+    return res.status(500).json({ error: "Server error, please try again" });
   }
 });
 
-// Other routes...
+// get a specific post by ID
+routers.get("/post/:id", async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const post = await Posts.findById(postId).exec();
+    if (!post) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Post not found" });
+    }
+    return res.status(200).json({ success: true, post });
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+});
 
 module.exports = routers;

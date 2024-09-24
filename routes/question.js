@@ -62,4 +62,20 @@ router.delete('/question/delete/:id', async (req, res) => {
     }
 });
 
+// Get all posts by card_id
+router.get('/post/card/:card_id', async (req, res) => {
+    try {
+        const cardId = req.params.card_id; // Extract card_id from the request parameters
+        const posts = await Posts.find({ card_id: cardId }).exec(); // Find all posts by card_id
+        if (posts.length === 0) {
+            return res.status(404).json({ success: false, message: "No posts found" });
+        }
+        return res.status(200).json({ success: true, posts }); // Return all matching posts
+    } catch (error) {
+        return res.status(400).json({ success: false, error: error.message });
+    }
+});
+
+
+
 module.exports = router;

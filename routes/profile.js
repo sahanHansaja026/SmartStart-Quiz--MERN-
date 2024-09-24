@@ -82,31 +82,22 @@ routerrees.get("/profiles", async (req, res) => {
       return res.status(400).json({ success: false, message: "Email is required" });
     }
 
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 8;
-    const startIndex = (page - 1) * limit;
+    const userProfile = await Posts.findOne({ email }); // Ensure Posts is the correct model
 
-    // Find posts by email, sort, and paginate
-    const posts = await Posts.find({ email })
-      .sort({ _id: -1 })
-      .skip(startIndex)
-      .limit(limit)
-      .exec();
-
-    const totalPosts = await Posts.countDocuments({ email });
+    if (!userProfile) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
 
     return res.status(200).json({
       success: true,
-      message: "Posts retrieved successfully",
-      existingPosts: posts,
-      totalPosts,
+      message: "User profile retrieved successfully",
+      userProfile,
     });
   } catch (error) {
-    console.error("Error fetching posts:", error.message); // Log the error for debugging
+    console.error("Error fetching user profile:", error.message);
     return res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
-
 
 
 
@@ -127,13 +118,40 @@ routerrees.get("/profile/:id", async (req, res) => {
 });
 
 // update post
-routerrees.put("/profile/update/:id", async (req, res) => {
+// Update post by email
+routerrees.put("/profile/update/email", async (req, res) => {
   try {
-    await Posts.findByIdAndUpdate(req.params.id, { $set: req.body });
-    return res.status(200).json({ success: "Post updated successfully" });
+    const { email, first_name, last_name, phone, DOB, job, about } = req.body;
+
+    // Validate email
+    if (!email) {
+      return res.status(400).json({ error: "Email is required" });
+    }
+
+    // Prepare an object with fields to update
+    const updateData = {};
+    if (first_name) updateData.first_name = first_name;
+    if (last_name) updateData.last_name = last_name;
+    if (phone) updateData.phone = phone;
+    if (DOB) updateData.DOB = DOB;
+    if (job) updateData.job = job;
+    if (about) updateData.about = about;
+
+    const updatedPost = await Posts.findOneAndUpdate(
+      { email }, // Find by email
+      { $set: updateData }, // Update fields
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedPost) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    return res.status(200).json({ success: "Post updated successfully", updatedPost });
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 });
+
 
 module.exports = routerrees;

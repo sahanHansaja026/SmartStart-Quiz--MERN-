@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import authService from '../services/authService'; // Import your auth service
 import "../css/profile.css";
 
 class Profile extends Component {
@@ -17,11 +18,13 @@ class Profile extends Component {
         about: "",
         image: null,
       },
+      existingPost: null, // Store the existing post
     };
   }
 
   componentDidMount() {
     this.retrievePosts();
+    this.fetchUserData(); // Fetch user data
   }
 
   retrievePosts() {
@@ -41,6 +44,32 @@ class Profile extends Component {
         console.error("Error fetching posts:", error);
       });
   }
+
+  fetchUserData = async () => {
+    try {
+      const userData = await authService.getUserData(); // Fetch user data
+      this.setState((prevState) => ({
+        newPost: {
+          ...prevState.newPost,
+          email: userData.email, // Set email from user data
+        },
+      }));
+      this.fetchExistingProfile(userData.email); // Fetch existing profile
+    } catch (error) {
+      console.error('Failed to fetch user data', error);
+    }
+  };
+
+  fetchExistingProfile = async (email) => {
+    try {
+      const res = await axios.get(`http://localhost:9000/profiles?email=${email}`);
+      if (res.data.success) {
+        this.setState({ existingPost: res.data.userProfile, newPost: { ...this.state.newPost, ...res.data.userProfile } });
+      }
+    } catch (error) {
+      console.error("Error fetching existing profile:", error);
+    }
+  };
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -69,32 +98,21 @@ class Profile extends Component {
       formData.append(key, this.state.newPost[key]);
     }
 
-    const { first_name, last_name, DOB, email, phone, image, about, job } =
-      this.state.newPost;
+    const { first_name, last_name, DOB, email, phone, image, about, job } = this.state.newPost;
 
-    if (
-      !first_name ||
-      !last_name ||
-      !DOB ||
-      !job ||
-      !about ||
-      !email ||
-      !phone ||
-      !image
-    ) {
+    if (!first_name || !last_name || !DOB || !job || !about || !email || !phone) {
       alert("Please fill in all required fields.");
       return;
     }
 
-    axios
-      .post("http://localhost:9000/profile/save", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+    const request = this.state.existingPost 
+      ? axios.put("http://localhost:9000/profile/update/email", formData) // Update if existing post
+      : axios.post("http://localhost:9000/profile/save", formData); // Save if new
+
+    request
       .then((res) => {
         if (res.data.success) {
-          console.log("Post added successfully");
+          console.log(this.state.existingPost ? "Post updated successfully" : "Post added successfully");
           this.setState({
             newPost: {
               first_name: "",
@@ -106,14 +124,15 @@ class Profile extends Component {
               about: "",
               image: null,
             },
+            existingPost: null, // Reset existing post
           });
           this.retrievePosts();
         } else {
-          console.error("Error adding post:", res.data.error);
+          console.error("Error processing request:", res.data.error);
         }
       })
       .catch((error) => {
-        console.error("Error adding post:", error);
+        console.error("Error processing request:", error);
       });
   };
 
@@ -150,12 +169,7 @@ class Profile extends Component {
               <label>
                 Email:
                 <br />
-                <input
-                  type="email"
-                  name="email"
-                  value={this.state.newPost.email}
-                  onChange={this.handleChange}
-                />
+                <span>{this.state.newPost.email}</span> {/* Display email as text */}
               </label>
               <br />
               <label>
@@ -198,7 +212,6 @@ class Profile extends Component {
                 <option value="Other">Other</option>
               </select>
             </label>
-
             <br />
             <br />
             <label>
@@ -225,7 +238,7 @@ class Profile extends Component {
             </label>
             <br />
             <br />
-            <button type="submit">Store in the System</button>
+            <button type="submit">{this.state.existingPost ? "Update Profile" : "Store in the System"}</button>
           </form>
         </div>
       </div>

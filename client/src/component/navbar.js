@@ -1,28 +1,85 @@
-import React, { Component } from 'react'
-import '../css/navbar.css';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import authService from '../services/authService';
+import axios from 'axios';
+import '../css/navbar.css'; // Ensure this file exists for styling
 
-export default class navbar extends Component {
-  render() {
-    return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-            <a className="navbar-brand" href="/">LankaSub World</a>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div className="navbar-nav">
-                    <a className="nav-link" aria-current="page" href="/">Home</a>
-                    <a className="nav-link" aria-current="page" href="/about">About Us</a>
-                    <a className="nav-link" aria-current="page" href="/">Contact</a>
-                    <a className="nav-link" href='/search'>search</a>
-                    <a className="nav-link-right" href="/login">Want to Add Subtitles? Join Us!</a>
-                    
-                </div>
+const importAll = (r) => {
+  let images = {};
+  r.keys().forEach((item) => { images[item.replace('./', '')] = r(item); });
+  return images;
+};
+
+const images = importAll(require.context('../profile', false, /\.(png|jpe?g|svg)$/));
+
+function Navbar() {
+  const [user, setUser] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userData = await authService.getUserData();
+        setUser(userData); // Set user data if available
+        if (userData && userData.email) {
+          fetchUserProfile(userData.email); // Fetch user profile if email exists
+        }
+      } catch (error) {
+        console.error('Failed to fetch user data', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const fetchUserProfile = async (email) => {
+    try {
+      const response = await axios.get(`http://localhost:9000/profiles?email=${email}`);
+      if (response.data.success) {
+        setUserProfile(response.data.userProfile); // Update state with user profile data
+      } else {
+        console.error("Failed to fetch user profile:", response.data.message);
+      }
+    } catch (error) {
+      console.error('Failed to fetch user profile:', error.response ? error.response.data : error.message);
+    }
+  };
+
+  return (
+    <nav className="navbar">
+      <div className="navbar-content">
+        {user && userProfile && (
+          <div className="user-info">
+            <div className="user-profile">
+              {userProfile.image && images[userProfile.image] && (
+                <img 
+                  src={images[userProfile.image]} 
+                  alt="Profile" 
+                  className="profile-image" 
+                />
+              )}
+              <span className="user-name">{userProfile.first_name} {userProfile.last_name}</span>
             </div>
-            
+          </div>
+        )}
+        <div className="navbar-links">
+          {user ? (
+            <>
+              <Link to="/home">Home</Link>
+              {/* Change the link to navigate to the update.js route */}
+              <Link to="/profile">Profile</Link>
+              <Link to="/logout">Logout</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/">Login</Link>
+              <Link to="/register">Signup</Link>
+            </>
+          )}
         </div>
+      </div>
     </nav>
-    )
-  }
+  );
 }
+
+export default Navbar;

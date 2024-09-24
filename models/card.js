@@ -5,6 +5,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  card_id: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,

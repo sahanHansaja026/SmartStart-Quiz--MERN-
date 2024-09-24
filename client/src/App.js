@@ -1,29 +1,40 @@
 import React, { Component } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Add from "./pages/add";
 import Login from "./pages/login";
 import Signup from "./pages/register";
 import Create from "./pages/create_card";
 import Home from "./pages/home";
 import Profile from "./pages/profile";
+import QuizCard from "./pages/quizcard";
 import NavBar from "./component/navbar";
+import Quiz from "./pages/quiz";
 
-export default class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div className="container">
-          <NavBar />
-          <Routes>
-            <Route exact path="/" Component={Login}></Route>
-            <Route exact path="/add/:id" Component={Add}></Route>
-            <Route exact path="/Register" Component={Signup}></Route>
-            <Route exact path="/create" Component={Create}></Route>
-            <Route exact path="/home" Component={Home}></Route>
-            <Route exact path="/profile" Component={Profile}></Route>
-          </Routes>
-        </div>
-      </BrowserRouter>
-    );
-  }
-}
+const App = () => {
+  const location = useLocation();
+
+  // Define the paths where the NavBar should not be shown
+  const noNavBarPaths = ["/", "/register"];
+
+  return (
+    <div className="container">
+      {!noNavBarPaths.includes(location.pathname) && <NavBar />}
+      <Routes>
+        <Route exact path="/" element={<Login />} />
+        <Route exact path="/add/:id" element={<Add />} />
+        <Route exact path="/register" element={<Signup />} />
+        <Route exact path="/create" element={<Create />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/profile" element={<Profile />} />
+        <Route path="/quiz/:card_id" element={<Quiz />} />
+        <Route path="/post/:id" element={<QuizCard />} />
+      </Routes>
+    </div>
+  );
+};
+
+export default () => (
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
