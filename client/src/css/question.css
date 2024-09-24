@@ -60,4 +60,6 @@
   button:hover {
     background-color: #2d2d2d;
   }
-  
+  .quiz-button{
+    background-color: green;
+  }

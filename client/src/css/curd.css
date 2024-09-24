@@ -1,0 +1,101 @@
+.curd table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.curd th {
+  background-color: transparent;
+  color: #fefefe;
+  font-weight: bold;
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.curd td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.curd .btn {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.curd .btn-warning {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.curd .btn-warning:hover {
+  background-color: #ffca28;
+}
+
+.curd .btn i {
+  margin-right: 5px;
+}
+
+.curd .btn-danger {
+  background-color: #ff0707;
+  color: #fff;
+}
+
+.curd .btn-danger:hover {
+  background-color: #ff2828;
+}
+
+.curd .btn-success {
+  background-color: #bebebe;
+  margin-top: 10px;
+  margin-left: 2px;
+}
+
+.curd .navbar {
+  background-color: #dddddd;
+  display: flex;
+}
+
+.curd .navbar-brand {
+  color: #2f54db;
+  font-weight: bold;
+}
+
+.curd .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0,0,0,.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.curd .navbar-nav {
+  margin-left: auto;
+}
+
+.curd .nav-link {
+  color: #343a40;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.curd .nav-link.active {
+  font-weight: bold;
+}
+
+.curd .nav-link.disabled {
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .curd .navbar-collapse {
+    justify-content: flex-end;
+  }
+
+  .curd .nav-link {
+    margin: 10px 0;
+  }
+}

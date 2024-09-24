@@ -44,6 +44,7 @@ function Navbar() {
       console.error('Failed to fetch user profile:', error.response ? error.response.data : error.message);
     }
   };
+  
 
   return (
     <nav className="navbar">
@@ -51,15 +52,16 @@ function Navbar() {
         {user && userProfile && (
           <div className="user-info">
             <div className="user-profile">
-              {userProfile.image && images[userProfile.image] && (
-                <img 
-                  src={images[userProfile.image]} 
-                  alt="Profile" 
-                  className="profile-image" 
-                />
-              )}
+              <Link to="/profile"> {/* Wrap the profile image in a Link component */}
+                {userProfile.image && images[userProfile.image] && (
+                  <img 
+                    src={images[userProfile.image]} 
+                    alt="Profile" 
+                    className="profile-image" 
+                  />
+                )}
+              </Link>
               <br/>
-              <span className="user-name">{userProfile.first_name} {userProfile.last_name}</span>
             </div>
           </div>
         )}
@@ -67,8 +69,7 @@ function Navbar() {
           {user ? (
             <>
               <Link to="/home">Home</Link>
-              {/* Change the link to navigate to the update.js route */}
-              <Link to="/profile">Profile</Link>
+              <Link to="#">Dashboard</Link>
               <Link to="/">Logout</Link>
             </>
           ) : (

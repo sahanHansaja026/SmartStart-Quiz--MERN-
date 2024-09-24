@@ -76,6 +76,28 @@ router.get('/post/card/:card_id', async (req, res) => {
     }
 });
 
+// Get all posts by card_id
+router.get('/post/card/:card_id', async (req, res) => {
+    try {
+        const cardId = req.params.card_id; // Extract card_id from the request parameters
+
+        // Find all posts by card_id
+        const posts = await Posts.find({ card_id: cardId }).exec(); 
+        
+        // Check if posts were found
+        if (posts.length === 0) {
+            return res.status(404).json({ success: false, message: "No posts found" });
+        }
+
+        // Return all matching posts
+        return res.status(200).json({ success: true, posts }); 
+    } catch (error) {
+        console.error(error); // Log error for debugging
+        return res.status(500).json({ success: false, error: error.message }); // Return 500 status for server errors
+    }
+});
+
+
 
 
 module.exports = router;

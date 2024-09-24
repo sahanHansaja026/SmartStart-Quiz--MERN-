@@ -1,0 +1,77 @@
+  
+  .quiz-card {
+    background: linear-gradient(135deg, #1e1e1e, #3a3a3a); /* Dark gradient background */
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 40px auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+  }
+  
+  .quiz-card:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+  }
+  
+  .quiz-card .quiz-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .quiz-card h1 {
+    color: #fdfdfd; /* Bright green for the movie title */
+    font-size: 2.5rem;
+  }
+  
+  .quiz-card .instructions {
+    background-color: rgba(76, 175, 80, 0.3); /* Light green background for instructions */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .quiz-card h2 {
+    color: #ff0000; /* Bright green for headings */
+    font-size: 45px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .quiz-card p {
+    font-size: 28px;
+    line-height: 1.5;
+  }
+  
+  .quiz-card .quiz-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .quiz-card table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .quiz-card td {
+    padding: 10px;
+  }
+  
+  .quiz-card .quiz-button {
+    background-color: #fa0e02; /* Green button */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .quiz-card.quiz-button:hover {
+    background-color: #fa0e02; /* Darker green on hover */
+    transform: translateY(-2px); /* Lift button slightly on hover */
+  }
+  

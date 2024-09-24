@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom"; // Add this import
-import '../css/question.css';
+import { useParams, useNavigate } from "react-router-dom"; // Import necessary hooks
+import "../css/question.css";
 
-// Add the AddPage function here
+// AddPage component
 const AddPage = ({ setCardId }) => {
   const { id } = useParams();
 
-  // Call the setCardId function to save the ID
+  // Set the card ID
   React.useEffect(() => {
-    setCardId(id); // Set the card ID in createpost state
+    setCardId(id); // Set the card ID in createPost state
   }, [id, setCardId]);
 
   return (
@@ -20,30 +20,39 @@ const AddPage = ({ setCardId }) => {
   );
 };
 
-// Create a wrapper component for AddPage to use useParams
+// Create a wrapper component for AddPage
 const AddPageWrapper = ({ setCardId }) => {
   return <AddPage setCardId={setCardId} />;
 };
 
-export default class createpost extends Component {
+// Function to create a wrapper for the class component
+const withNavigate = (WrappedComponent) => {
+  return (props) => {
+    const navigate = useNavigate();
+    return <WrappedComponent {...props} navigate={navigate} />;
+  };
+};
+
+class CreatePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
       newPost: {
-        card_id: "", // Initialize card_id
+        card_id: "",
         question: "",
         answer_1: "",
         answer_2: "",
         answer_3: "",
         answer_4: "",
-        correct_answer: ""
+        correct_answer: "",
       },
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRadioChange = this.handleRadioChange.bind(this);
-    this.setCardId = this.setCardId.bind(this); // Bind setCardId method
+    this.setCardId = this.setCardId.bind(this);
+    this.handleQuizButtonClick = this.handleQuizButtonClick.bind(this);
   }
 
   componentDidMount() {
@@ -55,9 +64,7 @@ export default class createpost extends Component {
       .get("http://localhost:7500/profile")
       .then((res) => {
         if (res.data.success) {
-          this.setState({
-            posts: res.data.existingPosts,
-          });
+          this.setState({ posts: res.data.existingPosts });
           console.log("Posts retrieved successfully:", this.state.posts);
         } else {
           console.log("Error fetching posts", res.data.error);
@@ -68,12 +75,11 @@ export default class createpost extends Component {
       });
   }
 
-  // New method to set card_id
   setCardId(id) {
     this.setState((prevState) => ({
       newPost: {
         ...prevState.newPost,
-        card_id: id, // Set the card_id in newPost
+        card_id: id,
       },
     }));
   }
@@ -106,16 +112,15 @@ export default class createpost extends Component {
           console.log("Post added successfully");
           this.setState({
             newPost: {
-              card_id: "", // Reset card_id
+              card_id: "",
               question: "",
               answer_1: "",
               answer_2: "",
               answer_3: "",
               answer_4: "",
-              correct_answer: ""
+              correct_answer: "",
             },
           });
-          // Refresh the page to reflect the changes
           window.location.reload();
         } else {
           console.error("Error adding post:", res.data.error);
@@ -126,13 +131,22 @@ export default class createpost extends Component {
       });
   }
 
+  handleQuizButtonClick() {
+    const { newPost } = this.state;
+    if (newPost.card_id) {
+      this.props.navigate(`/curds/${newPost.card_id}`);
+    } else {
+      console.error("Card ID is not defined.");
+    }
+  }
+
   render() {
     return (
       <div className="show">
         <center>
           <div className="container1">
             <div className="content">
-              <AddPageWrapper setCardId={this.setCardId} /> {/* Pass setCardId to AddPageWrapper */}
+              <AddPageWrapper setCardId={this.setCardId} />
               <form onSubmit={this.handleSubmit}>
                 <div className="title">Add Question Details</div>
                 <br />
@@ -231,9 +245,15 @@ export default class createpost extends Component {
                 <button type="submit">Store in the system</button>
               </form>
             </div>
+            <button className="quiz-button" onClick={this.handleQuizButtonClick}>
+              Preview
+            </button>
           </div>
         </center>
       </div>
     );
   }
 }
+
+// Wrap CreatePost with withNavigate to pass navigate as a prop
+export default withNavigate(CreatePost);

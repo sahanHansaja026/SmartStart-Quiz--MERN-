@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { withNavigation } from "../utils/withNavigation"; 
+import { withNavigation } from "../utils/withNavigation";
 import authService from "../services/authService";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import "../css/input.css";
 
 class CreateCard extends Component {
@@ -14,13 +14,14 @@ class CreateCard extends Component {
         id: "",
         title: "",
         summery: "",
-        card_id: "",  // This will be set in handleSubmit
+        card_id: "", // This will be set in handleSubmit
         image: null,
       },
       userEmail: "",
       errorMessage: "",
       imagePreview: null,
     };
+    this.fileInputRef = React.createRef(); // Reference for the file input
   }
 
   async componentDidMount() {
@@ -123,63 +124,72 @@ class CreateCard extends Component {
       });
   };
 
+  // New function to handle image box click
+  handleImageClick = () => {
+    this.fileInputRef.current.click(); // Trigger the file input when the image box is clicked
+  };
+
   render() {
     return (
-      <div className="input_sub">
-        <div className="container">
-          <form onSubmit={this.handleSubmit}>
-            {this.state.errorMessage && (
-              <div className="error-message">{this.state.errorMessage}</div>
-            )}
-            <div className="box">
-              <label>
-                Title:
+      <div>
+        <center>
+          <div className="input_sub">
+            <div className="container">
+              <form onSubmit={this.handleSubmit}>
+                {this.state.errorMessage && (
+                  <div className="error-message">{this.state.errorMessage}</div>
+                )}
+                <div className="cardshowimage" onClick={this.handleImageClick}>
+                  {this.state.imagePreview ? (
+                    <img
+                      src={this.state.imagePreview}
+                      alt="Image Preview"
+                      style={{ width: "100px", height: "auto" }}
+                    />
+                  ) : (
+                    <div className="default-profile-picture">No Image</div>
+                  )}
+                  <input
+                    type="file"
+                    name="image"
+                    accept=".png, .jpg, .jpeg"
+                    onChange={this.handleImageChange}
+                    ref={this.fileInputRef} // Set reference for the input
+                    style={{ display: "none" }} // Hide the file input
+                    required
+                  />
+                </div>
+                <div className="box">
+                  <label>
+                    <br />
+                    <input
+                      type="text"
+                      name="title"
+                      value={this.state.newPost.title}
+                      placeholder="Title"
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </label>
+                </div>
                 <br />
-                <input
-                  type="text"
-                  name="title"
-                  value={this.state.newPost.title}
-                  onChange={this.handleChange}
-                  required
-                />
-              </label>
+                <label>
+                  <br />
+                  <textarea
+                    name="summery"
+                    value={this.state.newPost.summery}
+                    onChange={this.handleChange}
+                    placeholder="Add Summary about quiz"
+                    required
+                  />
+                </label>
+                <br />
+                <br />
+                <button type="submit">Create</button>
+              </form>
             </div>
-            <br />
-            <label>
-              Add Summary about your Quiz:
-              <br />
-              <textarea
-                name="summery"
-                value={this.state.newPost.summery}
-                onChange={this.handleChange}
-                placeholder="Add Summary about quiz"
-                required
-              />
-            </label>
-            <br />
-            <label>
-              Image:
-              <br />
-              <input
-                type="file"
-                name="image"
-                accept=".png, .jpg, .jpeg"
-                onChange={this.handleImageChange}
-                required
-              />
-            </label>
-            <br />
-            {this.state.imagePreview && (
-              <img
-                src={this.state.imagePreview}
-                alt="Image Preview"
-                style={{ width: "100px", height: "auto" }}
-              />
-            )}
-            <br />
-            <button type="submit">Store in the System</button>
-          </form>
-        </div>
+          </div>
+        </center>
       </div>
     );
   }
