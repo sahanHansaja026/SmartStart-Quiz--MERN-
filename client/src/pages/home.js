@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../css/home.css";
 import { Link } from "react-router-dom";
+import heroimage from "../images/test.png";
 
 export default class Home extends Component {
   constructor(props) {
@@ -72,16 +73,37 @@ export default class Home extends Component {
     );
   }
 
+  // Helper function to truncate the summary
+  truncateSummary(summary, maxLength = 50) {
+    if (summary.length > maxLength) {
+      return `${summary.substring(0, maxLength)}...`;
+    }
+    return summary;
+  }
+
   render() {
     const { posts } = this.state;
 
     return (
       <div className="home">
+        <div className="hero">
+          <div className="herotext">
+            <h1>Welcome</h1>
+            <h2>SmartStart Quiz</h2>
+            <h4>"Test Your Wits, Challenge Your Mind!"</h4>
+          </div>
+          <div className="heroimage">
+            <img src={heroimage} alt="Example" />
+          </div>
+        </div>
+        <br />
         <center>
           <button className="box1">
             <Link to="/create">
-              <font color="white"><h1>crate your own card</h1></font>
-            </Link>{" "}
+              <font color="white">
+                <h1>Create Your Quiz Here</h1>
+              </font>
+            </Link>
           </button>
         </center>
         <br />
@@ -98,6 +120,7 @@ export default class Home extends Component {
                 </div>
                 <div className="card-header">
                   <h3>{post.title}</h3>
+                  <p>{this.truncateSummary(post.summery, 100)}</p> {/* Use the truncate function here */}
                 </div>
               </a>
             ))}

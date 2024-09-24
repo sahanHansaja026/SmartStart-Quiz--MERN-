@@ -58,6 +58,7 @@ function Navbar() {
                   className="profile-image" 
                 />
               )}
+              <br/>
               <span className="user-name">{userProfile.first_name} {userProfile.last_name}</span>
             </div>
           </div>
@@ -68,7 +69,7 @@ function Navbar() {
               <Link to="/home">Home</Link>
               {/* Change the link to navigate to the update.js route */}
               <Link to="/profile">Profile</Link>
-              <Link to="/logout">Logout</Link>
+              <Link to="/">Logout</Link>
             </>
           ) : (
             <>

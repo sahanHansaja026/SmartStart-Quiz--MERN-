@@ -115,7 +115,8 @@ export default class createpost extends Component {
               correct_answer: ""
             },
           });
-          this.retrievePosts();
+          // Refresh the page to reflect the changes
+          window.location.reload();
         } else {
           console.error("Error adding post:", res.data.error);
         }
@@ -127,7 +128,7 @@ export default class createpost extends Component {
 
   render() {
     return (
-      <div>
+      <div className="show">
         <center>
           <div className="container1">
             <div className="content">

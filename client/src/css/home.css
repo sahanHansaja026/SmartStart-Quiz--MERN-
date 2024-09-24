@@ -1,6 +1,11 @@
 .home {
   background-color: #000000;
 }
+* {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -9,16 +14,13 @@
 }
 
 .card {
-  background-color: #070707;
-  border: 1px solid #ddd;
+  background-color: transparent;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   padding: 0;
   width: 400px;
   height: 250px;
   margin: 10px;
-  border: 2px solid green;
   display: flex;
 }
 
@@ -29,21 +31,20 @@
 }
 
 .card-header {
-  border-bottom: 1px solid #eee;
   margin-bottom: 8px;
   padding: 16px;
-  display: contents;
+  display: block;
   color: #fff;
 }
 
 .card-header h3 {
   margin-left: 15px;
   font-size: 25px;
+  font-weight: bold;
 }
 .card-body p {
   margin-top: -50px;
   font-size: 15px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .card-body {
   padding: 16px;
@@ -100,15 +101,15 @@ a {
   color: #fff;
 }
 .box1 {
-  width: 750px;
-  height: 150px;
+  width: 650px;
+  height: 100px;
   border: 2px dashed green;
   border-radius: 25px;
   background-color: #000000;
 }
 .box1 h1 {
   color: rgb(255, 255, 255);
-  font-size: 25px;
+  font-size: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,9 +117,43 @@ a {
 }
 .box1 h2 {
   color: rgb(255, 255, 255);
-  font-size: 45px;
+  font-size: 65px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.hero {
+  display: flex;
+  background-color: #515050;
+}
+.herotext {
+  flex-direction: column;
+  font-size: 45px;
+  color: white;
+  margin-left: 30px;
+  font-weight: bold;
+}
+.herotext h1 {
+  margin-bottom: -20px;
+}
+.herotext h2 {
+  margin-top: -20px;
+  margin-left: 20px;
+  color: green;
+}
+.herotext h4 {
+  margin-top: -25px;
+  margin-left: 75px;
+  font-size: 30px;
+}
+.home .heroimage img {
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  text-align: right;
+  width: 400px;
+  margin-left: 600px;
 }

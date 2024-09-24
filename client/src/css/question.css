@@ -1,4 +1,8 @@
-.container1 {
+.show {
+  font-size: 20px;
+  color: #000;
+}
+.show .container1 {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -16,12 +20,14 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: black;
   }
   
   label {
     display: block;
     margin-bottom: 10px;
     text-align: left; 
+    color: black;
   }
   
   input[type="text"],
@@ -34,6 +40,7 @@
     border-radius: 5px;
     margin: 0 auto;
     display: block; 
+    color:black;
   }
   
   form button {

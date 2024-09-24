@@ -1,0 +1,16 @@
+.score-container {
+    text-align: center;
+    padding: 50px;
+    background-color: #f0f0f0;
+  }
+  
+  .score-title {
+    font-size: 36px;
+    color: #4caf50;
+  }
+  
+  .score-card-id, .score-results {
+    font-size: 24px;
+    color: #333;
+  }
+  

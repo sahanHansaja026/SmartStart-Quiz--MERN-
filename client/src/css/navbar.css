@@ -3,8 +3,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px; /* Adjust padding as needed */
-  background-color: #f8f8f8; /* Change to your preferred background color */
+  background-color: #282e27; /* Change to your preferred background color */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: white;
 }
 
 .navbar-content {
@@ -21,35 +22,40 @@
 .user-profile {
   display: flex;
   align-items: center;
-  margin-right: auto; /* Pushes the links to the right */
+  margin-right: auto;
+  width: 100px; /* Pushes the links to the right */
 }
 
 .profile-image {
-  width: 40px; /* Adjust size as needed */
-  height: 40px; /* Adjust size as needed */
+  width: 60px; /* Adjust size as needed */
+  height: 60px; /* Adjust size as needed */
   border-radius: 50%; /* Makes the image circular */
-  margin-right: 10px; /* Space between image and name */
+  margin-right: 10px;
+  border:3px solid green; /* Space between image and name */
 }
 
 .user-name {
-  font-weight: bold; /* Makes the name stand out */
+  font-weight: bold;
+  font-size: 20px;
+  width: 100px; /* Makes the name stand out */
 }
 
 .navbar-links {
   display: flex;
   gap: 15px;
   margin-left: 1200px;
-  font-weight: bold; /* Space between links */
+  font-weight: bold;
+  font-size: 30px; /* Space between links */
 }
 
 .navbar-links a {
   text-decoration: none;
-  color: #333; /* Change to your preferred link color */
+  color: #ffffff; /* Change to your preferred link color */
   padding: 5px 10px; /* Add padding for clickable area */
   border-radius: 5px; /* Rounded corners for links */
   transition: background-color 0.3s; /* Smooth transition for hover */
 }
 
 .navbar-links a:hover {
-  background-color: #e0e0e0; /* Change on hover */
+  color: #04f73d; /*rgb(0, 249, 75) on hover */
 }

@@ -9,6 +9,7 @@ import Profile from "./pages/profile";
 import QuizCard from "./pages/quizcard";
 import NavBar from "./component/navbar";
 import Quiz from "./pages/quiz";
+import ScorePage from "./pages/score";
 
 const App = () => {
   const location = useLocation();
@@ -27,6 +28,7 @@ const App = () => {
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route path="/quiz/:card_id" element={<Quiz />} />
+        <Route path="score/:card_id" element={<ScorePage/>}/>
         <Route path="/post/:id" element={<QuizCard />} />
       </Routes>
     </div>

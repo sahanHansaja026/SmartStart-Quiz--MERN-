@@ -1,73 +1,117 @@
 /* quiz.css */
 
 body {
-    background-color: #121212; /* Dark background */
-    color: white; /* White text color */
-    font-family: 'Arial', sans-serif; /* Default font family */
-  }
-  
-  .quiz-container {
-    max-width: 800px; /* Max width for the quiz container */
-    margin: auto; /* Center the container */
-    padding: 20px; /* Padding around the container */
-    border-radius: 10px; /* Rounded corners */
-    background-color: #1e1e1e; /* Slightly lighter dark background */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
-  }
-  
-  .quiz-title {
-    text-align: center; /* Centered title */
-    font-size: 2.5em; /* Large title font size */
-    color: #00ff00; /* Bright green color for title */
-  }
-  
-  .quiz-subtitle {
-    margin-top: 20px; /* Space above subtitle */
-    font-size: 1.5em; /* Subtitle font size */
-    color: #00ff00; /* Bright green color for subtitle */
-  }
-  
-  .quiz-question {
-    margin: 20px 0; /* Margin around the question section */
-    padding: 10px; /* Padding inside question section */
-    border: 2px solid #00ff00; /* Green border for the question */
-    border-radius: 5px; /* Rounded corners for question box */
-  }
-  
-  .quiz-answers {
-    margin-top: 10px; /* Space above answers */
-    font-size: 1.2em; /* Slightly larger font size for answers */
-  }
-  
-  .navigation-buttons {
-    display: flex; /* Flexbox layout for buttons */
-    justify-content: space-between; /* Space between buttons */
-    margin-top: 20px; /* Space above buttons */
-  }
-  
-  .previous-button, .next-button {
-    background-color: #00ff00; /* Green button background */
-    color: black; /* Black text color for buttons */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px 20px; /* Padding inside buttons */
-    font-size: 1.2em; /* Button font size */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Transition effect */
-  }
-  
-  .previous-button:hover, .next-button:hover {
-    background-color: #008000; /* Darker green on hover */
-  }
-  
-  .error {
-    color: red; /* Red color for error messages */
-    text-align: center; /* Center error message */
-    margin-top: 20px; /* Space above error message */
-  }
-  
-  .loading {
-    text-align: center; /* Center loading message */
-    margin-top: 20px; /* Space above loading message */
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #1b1b1b; /* Black background */
+  color: #ffffff; /* White text */
+  margin: 0;
+  padding: 0;
+}
+
+.quiz-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #2d2d2d; /* Dark grey for container */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.quiz-title {
+  color: #00ff00; /* Bright green */
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.quiz-card-id {
+  text-align: center;
+  font-size: 1.2em;
+  color: #ffffff;
+}
+
+.question-numbers {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.question-number {
+  background-color: #00ff00; /* Green */
+  color: #1b1b1b; /* Black */
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 50%;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.question-number.correct {
+  background-color: #00b300; /* Darker green for correct answers */
+}
+
+.question-number.incorrect {
+  background-color: #ff3333; /* Red for incorrect answers */
+}
+
+.question-number:hover {
+  background-color: #33ff33; /* Lighter green on hover */
+}
+
+.quiz-subtitle {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #00ff00; /* Green for subtitle */
+}
+
+.quiz-question p {
+  font-size: 1.2em;
+}
+
+.quiz-answers label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.quiz-answers input[type="radio"] {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.correct-answer {
+  font-weight: bold;
+  color: #00ff00; /* Green for correct answer text */
+  margin-top: 20px;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.previous-button,
+.next-button {
+  background-color: #00ff00; /* Green buttons */
+  border: none;
+  color: #1b1b1b; /* Black text */
+  padding: 10px 20px;
+  font-size: 1.1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.previous-button:hover,
+.next-button:hover {
+  background-color: #33ff33; /* Lighter green on hover */
+}
+
+.previous-button:disabled,
+.next-button:disabled {
+  background-color: #666666; /* Grey for disabled buttons */
+  cursor: not-allowed;
+}
