@@ -1,16 +1,49 @@
-.score-container {
-    text-align: center;
-    padding: 50px;
-    background-color: #f0f0f0;
-  }
-  
-  .score-title {
-    font-size: 36px;
-    color: #4caf50;
-  }
-  
-  .score-card-id, .score-results {
-    font-size: 24px;
-    color: #333;
-  }
-  
+/* score.css */
+.score-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #000000;
+  padding: 20px;
+}
+
+.score-card {
+  background: linear-gradient(135deg, #222223, #676769);
+  color: rgb(59, 251, 0);
+  border-radius: 15px;
+  padding: 40px;
+  width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.score-card:hover {
+  transform: scale(1.05);
+}
+
+.score-card h2 {
+  margin-bottom: 20px;
+  font-size: 54px;
+  color: white;
+  font-weight: bold;
+}
+
+.score-card p {
+  margin: 10px 0;
+  font-size: 38px;
+}
+
+.score {
+  font-size: 56px;
+  font-weight: bold;
+  color: #1aff00;
+}
+
+.username-email {
+  margin-top: 20px;
+  font-size: 16px;
+  opacity: 0.8;
+}

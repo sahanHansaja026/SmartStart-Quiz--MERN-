@@ -13,6 +13,8 @@ import ScorePage from "./pages/score";
 import CurdsPage from "./pages/curd";
 import EditPost from "./pages/editquestion";
 import QuestionDeatails from "./pages/questionDeatails";
+import BarChart from "./pages/chart";
+import Dashboard from "./pages/dashboard";
 
 const App = () => {
   const location = useLocation();
@@ -29,6 +31,8 @@ const App = () => {
         <Route exact path="/register" element={<Signup />} />
         <Route exact path="/create" element={<Create />} />
         <Route exact path="/home" element={<Home />} />
+        <Route exact path="/chart"element={<BarChart/>}/>
+        <Route exact path="/dashboard"element={<Dashboard/>}/>
         <Route exact path="/profile" element={<Profile />} />
         <Route path="/quiz/:card_id" element={<Quiz />} />
         <Route path="/curds/:id" element={<CurdsPage />} />

@@ -9,8 +9,8 @@ const QuizCard = () => {
   const { id } = useParams();
   const navigate = useNavigate(); // Use useNavigate
 
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
 
   // Fetch user data
   useEffect(() => {
@@ -20,7 +20,7 @@ const QuizCard = () => {
         setUsername(userData.username);
         setEmail(userData.email);
       } catch (error) {
-        console.error('Failed to fetch user data', error);
+        console.error("Failed to fetch user data", error);
       }
     };
     fetchUserData();
@@ -56,25 +56,32 @@ const QuizCard = () => {
   };
 
   return (
-    <div className="quiz-card">
-      <div className="quiz-header"></div>
-      <div className="instructions">
-        <h2>Instructions</h2>
-        <p>
-          Prepare yourself! Carefully read each question and select the answer
-          you believe is correct. You can only attempt the quiz once, so make it
-          count!
-        </p>
+    <div className="quizcards">
+      <div className="quiz-cardsummery">
+        <p>{post.summery}</p>
       </div>
-      <div className="quiz-details">
-        <button className="quiz-button" onClick={handleQuizButtonClick}>
-          Attempt the Quiz
-        </button>
+      <div className="quiz-card">
+        <div className="quiz-header"></div>
+        <div className="instructions">
+          <h2>Instructions</h2>
+          <p>
+            Get ready! Carefully read each question and select the answer you
+            believe is correct. You can attempt this quiz multiple times, but
+            only your first attempt will count towards your score. Any
+            subsequent attempts will not affect your score, but you can still
+            complete the quiz for practice.
+          </p>
+        </div>
+        <div className="quiz-details">
+          <button className="quiz-button" onClick={handleQuizButtonClick}>
+            Attempt the Quiz
+          </button>
+        </div>
+        {/* Conditionally display Modify link if emails match */}
+        {emailsMatch() && (
+          <Link to={`/curds/${post.card_id}`}>Modify (only for admin)</Link>
+        )}
       </div>
-      {/* Conditionally display Modify link if emails match */}
-      {emailsMatch() && (
-        <Link to={`/curds/${post.card_id}`}>Modify (only for admin)</Link>
-      )}
     </div>
   );
 };

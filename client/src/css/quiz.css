@@ -37,7 +37,7 @@ body {
 
 .question-number {
   background-color: #00ff00; /* Green */
-  color: #1b1b1b; /* Black */
+  color: #000000; /* Black */
   border: none;
   padding: 10px;
   margin: 5px;
@@ -45,14 +45,17 @@ body {
   font-size: 1.2em;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-weight: bold;
 }
 
 .question-number.correct {
-  background-color: #00b300; /* Darker green for correct answers */
+  background-color: #0f00b3;
+  color: rgb(255, 255, 255); /* Darker green for correct answers */
 }
 
 .question-number.incorrect {
-  background-color: #ff3333; /* Red for incorrect answers */
+  background-color: #ff3333;
+  color: white; /* Red for incorrect answers */
 }
 
 .question-number:hover {
@@ -74,6 +77,8 @@ body {
   display: block;
   margin-bottom: 10px;
   font-size: 1.1em;
+  font-size: 25px;
+  color:white;
 }
 
 .quiz-answers input[type="radio"] {

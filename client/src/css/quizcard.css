@@ -5,11 +5,22 @@
     padding: 30px;
     border-radius: 15px;
     max-width: 600px;
-    margin: 40px auto;
+    margin: 2px auto;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s;
+    margin-top: -50px;
   }
-  
+  .quiz-cardsummery {
+    background: transparent; /* Dark gradient background */
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 1000px;
+    margin: 40px auto;
+  }
+  .quiz-cardsummery p{
+    font-size: 25px;
+  }
   .quiz-card:hover {
     transform: scale(1.02); /* Slight zoom on hover */
   }

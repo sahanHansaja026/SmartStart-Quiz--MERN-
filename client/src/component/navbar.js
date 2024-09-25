@@ -69,7 +69,7 @@ function Navbar() {
           {user ? (
             <>
               <Link to="/home">Home</Link>
-              <Link to="#">Dashboard</Link>
+              <Link to="/dashboard">Dashboard</Link>
               <Link to="/">Logout</Link>
             </>
           ) : (

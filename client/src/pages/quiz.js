@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // Add useNavigate
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/quiz.css";
 
 const Quiz = () => {
   const { card_id } = useParams();
-  const navigate = useNavigate(); // Initialize navigate to redirect user
+  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,16 +18,15 @@ const Quiz = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:9000/post/card/${card_id}`
-        );
+        const response = await axios.get(`http://localhost:9000/post/card/${card_id}`);
         if (response.data.success) {
           setPosts(response.data.posts);
           setResults(new Array(response.data.posts.length).fill(null));
+        } else {
+          setError("Failed to load quiz questions.");
         }
       } catch (error) {
-        console.error("Error fetching post details:", error);
-        setError(error.message);
+        setError("Error fetching quiz data. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -40,11 +39,8 @@ const Quiz = () => {
     if (answered) {
       if (currentIndex < posts.length - 1) {
         setCurrentIndex(currentIndex + 1);
-        setAnswered(false);
-        setShowCorrectAnswer(false);
-        setSelectedAnswer("");
+        resetQuestionState();
       } else {
-        // Calculate score and navigate to the score page
         const score = results.filter((result) => result === true).length;
         navigate(`/score/${card_id}`, { state: { score, total: posts.length } });
       }
@@ -52,7 +48,7 @@ const Quiz = () => {
       const post = posts[currentIndex];
       const isCorrect = selectedAnswer === post.correct_answer;
 
-      // Update the results array
+      // Update results
       const updatedResults = [...results];
       updatedResults[currentIndex] = isCorrect;
       setResults(updatedResults);
@@ -65,10 +61,14 @@ const Quiz = () => {
   const handlePrevious = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
-      setAnswered(false);
-      setShowCorrectAnswer(false);
-      setSelectedAnswer("");
+      resetQuestionState();
     }
+  };
+
+  const resetQuestionState = () => {
+    setAnswered(false);
+    setShowCorrectAnswer(false);
+    setSelectedAnswer("");
   };
 
   const handleAnswerChange = (e) => {
@@ -77,9 +77,7 @@ const Quiz = () => {
 
   const handleQuestionClick = (index) => {
     setCurrentIndex(index);
-    setAnswered(false);
-    setShowCorrectAnswer(false);
-    setSelectedAnswer("");
+    resetQuestionState();
   };
 
   if (loading) {
@@ -101,17 +99,12 @@ const Quiz = () => {
       <h1 className="quiz-title">Quiz Page</h1>
       <p className="quiz-card-id">Card ID: <span>{card_id}</span></p>
 
-      {/* Display clickable question numbers */}
       <div className="question-numbers">
         {posts.map((_, index) => (
           <button
             key={index}
             className={`question-number ${
-              results[index] === true
-                ? "correct"
-                : results[index] === false
-                ? "incorrect"
-                : ""
+              results[index] === true ? "correct" : results[index] === false ? "incorrect" : ""
             }`}
             onClick={() => handleQuestionClick(index)}
           >
@@ -122,57 +115,21 @@ const Quiz = () => {
 
       <h2 className="quiz-subtitle">Post Details:</h2>
       <div className="quiz-question">
-        <p>
-          <b>Question:</b> {post.question}
-        </p>
+        <p><b>Question:</b> {post.question}</p>
         <div className="quiz-answers">
-          <label>
-            <input
-              type="radio"
-              name="answer"
-              value={post.answer_1}
-              checked={selectedAnswer === post.answer_1}
-              onChange={handleAnswerChange}
-              disabled={answered}
-            />
-            {post.answer_1}
-          </label>
-          <br />
-          <label>
-            <input
-              type="radio"
-              name="answer"
-              value={post.answer_2}
-              checked={selectedAnswer === post.answer_2}
-              onChange={handleAnswerChange}
-              disabled={answered}
-            />
-            {post.answer_2}
-          </label>
-          <br />
-          <label>
-            <input
-              type="radio"
-              name="answer"
-              value={post.answer_3}
-              checked={selectedAnswer === post.answer_3}
-              onChange={handleAnswerChange}
-              disabled={answered}
-            />
-            {post.answer_3}
-          </label>
-          <br />
-          <label>
-            <input
-              type="radio"
-              name="answer"
-              value={post.answer_4}
-              checked={selectedAnswer === post.answer_4}
-              onChange={handleAnswerChange}
-              disabled={answered}
-            />
-            {post.answer_4}
-          </label>
+          {[post.answer_1, post.answer_2, post.answer_3, post.answer_4].map((answer, index) => (
+            <label key={index}>
+              <input
+                type="radio"
+                name="answer"
+                value={answer}
+                checked={selectedAnswer === answer}
+                onChange={handleAnswerChange}
+                disabled={answered}
+              />
+              {answer}
+            </label>
+          ))}
         </div>
 
         {showCorrectAnswer && (
@@ -183,19 +140,11 @@ const Quiz = () => {
       </div>
 
       <div className="navigation-buttons">
-        <button
-          className="previous-button"
-          onClick={handlePrevious}
-          disabled={currentIndex === 0}
-        >
+        <button className="previous-button" onClick={handlePrevious} disabled={currentIndex === 0}>
           Previous
         </button>
 
-        <button
-          className="next-button"
-          onClick={handleNext}
-          disabled={!selectedAnswer && !answered}
-        >
+        <button className="next-button" onClick={handleNext} disabled={!selectedAnswer && !answered}>
           {answered ? (currentIndex === posts.length - 1 ? "Finish" : "Next") : "Submit"}
         </button>
       </div>

@@ -12,7 +12,7 @@ export default class Home extends Component {
       posts: [],
       currentPage: 1,
       totalPages: 1,
-      postsPerPage: 12,
+      postsPerPage: 3,
     };
   }
 
@@ -43,8 +43,32 @@ export default class Home extends Component {
   renderPagination() {
     const { currentPage, totalPages } = this.state;
     const pages = [];
+    const maxVisiblePages = 3; // Number of page buttons to show on each side of the current page
 
-    for (let i = 1; i <= totalPages; i++) {
+    // Display first page
+    if (currentPage > 1) {
+      pages.push(
+        <button
+          key={1}
+          className={`pagination-button ${1 === currentPage ? "active" : ""}`}
+          onClick={() => this.retrievePosts(1)}
+        >
+          1
+        </button>
+      );
+    }
+
+    // Show ellipses if there are pages between the first and current page
+    if (currentPage > maxVisiblePages + 1) {
+      pages.push(<span key="left-ellipsis">...</span>);
+    }
+
+    // Display pages around the current page
+    for (
+      let i = Math.max(2, currentPage - maxVisiblePages);
+      i <= Math.min(totalPages - 1, currentPage + maxVisiblePages);
+      i++
+    ) {
       pages.push(
         <button
           key={i}
@@ -52,6 +76,24 @@ export default class Home extends Component {
           onClick={() => this.retrievePosts(i)}
         >
           {i}
+        </button>
+      );
+    }
+
+    // Show ellipses if there are pages between the current and last page
+    if (currentPage < totalPages - maxVisiblePages) {
+      pages.push(<span key="right-ellipsis">...</span>);
+    }
+
+    // Display last page
+    if (totalPages > 1) {
+      pages.push(
+        <button
+          key={totalPages}
+          className={`pagination-button ${totalPages === currentPage ? "active" : ""}`}
+          onClick={() => this.retrievePosts(totalPages)}
+        >
+          {totalPages}
         </button>
       );
     }
@@ -74,7 +116,7 @@ export default class Home extends Component {
   }
 
   // Helper function to truncate the summary
-  truncateSummary(summary, maxLength = 50) {
+  truncateSummary(summary, maxLength = 100) {
     if (summary.length > maxLength) {
       return `${summary.substring(0, maxLength)}...`;
     }

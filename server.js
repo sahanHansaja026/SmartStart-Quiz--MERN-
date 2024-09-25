@@ -8,6 +8,7 @@ const postRouter = require('./routes/question');
 const cardRouter = require('./routes/card')  
 const authRoutes = require('./routes/auth');
 const profileRouter = require('./routes/profile');  
+const scoreRouter= require('./routes/score');
 
 const app = express();
 const PORT = process.env.PORT || 9000;
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use( postRouter); 
 app.use(cardRouter);
 app.use(profileRouter);
+app.use(scoreRouter);
 
 mongoose.connect('mongodb://localhost:27017/quiz_system', {
   useNewUrlParser: true,
