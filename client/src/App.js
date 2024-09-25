@@ -11,6 +11,8 @@ import NavBar from "./component/navbar";
 import Quiz from "./pages/quiz";
 import ScorePage from "./pages/score";
 import CurdsPage from "./pages/curd";
+import EditPost from "./pages/editquestion";
+import QuestionDeatails from "./pages/questionDeatails";
 
 const App = () => {
   const location = useLocation();
@@ -32,6 +34,9 @@ const App = () => {
         <Route path="/curds/:id" element={<CurdsPage />} />
         <Route path="score/:card_id" element={<ScorePage/>}/>
         <Route path="/post/:id" element={<QuizCard />} />
+        <Route path="/edit/:id"element={<EditPost/>}/>
+        <Route path="/getquestion/:id"element={<QuestionDeatails/>}/>
+
       </Routes>
     </div>
   );

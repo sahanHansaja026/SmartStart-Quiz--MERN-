@@ -1,0 +1,108 @@
+.edit-post-container {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #424141;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.edit-post-container .title {
+  text-align: center;
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+
+.edit-post-container .edit-post-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-post-container .form-group {
+  margin-bottom: 15px;
+}
+
+.edit-post-container .form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: black;
+}
+
+.edit-post-container .form-group input,
+.edit-post-container .form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 26px;
+  color: rgb(255, 255, 255);
+}
+
+.edit-post-container textarea {
+  height: 5px;
+  resize: vertical;
+}
+
+.edit-post-container .submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-post-container .submit-button:hover {
+  background-color: #45a049;
+}
+/* edit.css */
+
+/* Style the radio button label to create a custom appearance */
+.edit-post-container input[type="radio"] {
+  display: none; /* Hide the default radio button */
+}
+
+.edit-post-container label.radio-label {
+  position: relative;
+  padding-left: 30px; /* Space for custom radio */
+  cursor: pointer;
+  font-size: 20px; /* Adjust font size */
+  color: #000000; /* Label color */
+}
+
+/* Custom radio button */
+.edit-post-container label.radio-label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px; /* Width of the custom radio */
+  height: 20px; /* Height of the custom radio */
+  border: 2px solid #000000; /* Border color */
+  border-radius: 50%; /* Circular shape */
+  background: white; /* Background color */
+}
+
+/* Checkmark for selected radio button */
+.edit-post-container input[type="radio"]:checked + label.radio-label:before {
+  background: #28a745; /* Background when selected */
+  border-color: #28a745; /* Border color when selected */
+}
+
+/* Adding checkmark */
+.edit-post-container input[type="radio"]:checked + label.radio-label:after {
+  content: "✔"; /* Unicode checkmark character */
+  position: absolute;
+  left: 5px; /* Center it */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px; /* Checkmark size */
+  color: white; /* Checkmark color */
+}

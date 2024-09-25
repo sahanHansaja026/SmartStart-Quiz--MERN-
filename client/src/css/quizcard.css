@@ -74,4 +74,16 @@
     background-color: #fa0e02; /* Darker green on hover */
     transform: translateY(-2px); /* Lift button slightly on hover */
   }
+  .quiz-card link a{
+    font-size: 25px;
+    color: white;
+  }
   
+  .quiz-card a {
+    text-decoration: none;
+    color: #ffffff; /* Change to your preferred link color */
+    padding: 5px 10px; /* Add padding for clickable area */
+    border-radius: 5px; /* Rounded corners for links */
+    transition: background-color 0.3s;
+    font-size: 25px; /* Smooth transition for hover */
+  }
