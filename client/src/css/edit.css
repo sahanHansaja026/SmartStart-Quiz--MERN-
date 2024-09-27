@@ -42,7 +42,7 @@
 }
 
 .edit-post-container textarea {
-  height: 5px;
+  height: 125px;
   resize: vertical;
 }
 
@@ -61,48 +61,43 @@
 .edit-post-container .submit-button:hover {
   background-color: #45a049;
 }
-/* edit.css */
 
-/* Style the radio button label to create a custom appearance */
 .edit-post-container input[type="radio"] {
-  display: none; /* Hide the default radio button */
+  display: none;
 }
 
 .edit-post-container label.radio-label {
   position: relative;
-  padding-left: 30px; /* Space for custom radio */
+  padding-left: 30px;
   cursor: pointer;
-  font-size: 20px; /* Adjust font size */
-  color: #000000; /* Label color */
+  font-size: 20px;
+  color: #000000;
 }
 
-/* Custom radio button */
 .edit-post-container label.radio-label:before {
   content: "";
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px; /* Width of the custom radio */
-  height: 20px; /* Height of the custom radio */
-  border: 2px solid #000000; /* Border color */
-  border-radius: 50%; /* Circular shape */
-  background: white; /* Background color */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  background: white;
 }
 
-/* Checkmark for selected radio button */
 .edit-post-container input[type="radio"]:checked + label.radio-label:before {
-  background: #28a745; /* Background when selected */
-  border-color: #28a745; /* Border color when selected */
+  background: #28a745;
+  border-color: #28a745;
 }
 
-/* Adding checkmark */
 .edit-post-container input[type="radio"]:checked + label.radio-label:after {
-  content: "✔"; /* Unicode checkmark character */
+  content: "✔";
   position: absolute;
-  left: 5px; /* Center it */
+  left: 5px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 18px; /* Checkmark size */
-  color: white; /* Checkmark color */
+  font-size: 18px;
+  color: white;
 }

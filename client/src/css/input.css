@@ -71,6 +71,7 @@
   font-size: 28px;
   background-color: transparent;
   color: rgb(0, 0, 0);
+  height: 175px;
 }
 .input_sub input[type="text"]:focus,
 .input_sub textarea:focus {

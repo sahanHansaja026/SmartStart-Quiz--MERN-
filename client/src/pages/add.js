@@ -152,7 +152,7 @@ class CreatePost extends Component {
                 <br />
                 <label>
                   Question Text :
-                  <input
+                  <textarea
                     type="text"
                     name="question"
                     value={this.state.newPost.question}

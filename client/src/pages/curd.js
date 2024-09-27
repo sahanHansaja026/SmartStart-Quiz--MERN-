@@ -104,11 +104,6 @@ const CurdsPage = () => {
           </table>
         </center>
       )}
-      <button className="btn btn-success">
-        <a href="/add" style={{ textDecoration: "none", color: "purple" }}>
-          <i className="fa fa-plus"></i>&nbsp;Create New Post
-        </a>
-      </button>
     </div>
   );
 };
