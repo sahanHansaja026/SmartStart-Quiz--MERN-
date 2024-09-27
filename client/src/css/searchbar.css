@@ -1,0 +1,78 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .card {
+    background-color: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 0;
+    width: 350px;
+    height: auto; /* Allow height to adjust based on content */
+    margin: 10px;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    text-decoration: none; /* Remove underline from links */
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: scale(1.02); /* Scale up on hover */
+  }
+  
+  .card-image {
+    width: 100%; /* Full width of the card */
+    height: 200px; /* Fixed height for consistency */
+    overflow: hidden; /* Hide overflow for images */
+  }
+  
+  .card-image img {
+    width: 100%; /* Responsive image */
+    height: 100%; /* Ensure it fills the height */
+    object-fit: cover; /* Maintain aspect ratio */
+  }
+  
+  .card-header {
+    margin-bottom: 8px;
+    padding: 16px;
+    color: #fff;
+  }
+  
+  .card-header h3 {
+    margin-left: 15px;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  .card-body {
+    padding: 16px; /* Padding for the body */
+  }
+  
+  .card-body p {
+    margin-top: 10px; /* Space between title and summary */
+    font-size: 15px;
+    color: #ccc; /* Light color for summary text */
+  }
+  
+  .card-body p strong {
+    font-weight: bold;
+  }
+  .search-form input[type="text"] {
+    width: 800px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50px;
+    font-size: 25px;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: #3c3c3c;
+    color: white;
+    margin-top: 10px;
+  }
+  
+  .search-form input[type="text"]:focus {
+    border-color: green;
+  }

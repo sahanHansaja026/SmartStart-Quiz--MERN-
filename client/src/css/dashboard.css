@@ -1,57 +1,36 @@
-/* src/components/Dashboard.css */
+/* src/css/dashboard.css */
 .dashboard {
   display: flex;
+  height: 100vh;
 }
 
-.dashboard .sidebar {
+.sidebar {
   width: 200px;
-  background-color: #000000;
+  background-color: #333;
+  color: #fff;
   padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.dashboard .sidebar h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.dashboard .sidebar ul {
+.sidebar ul {
   list-style-type: none;
   padding: 0;
 }
 
-.dashboard .sidebar li {
-  margin: 10px 0;
-  cursor: pointer;
+.sidebar ul li {
+  margin: 20px 0;
 }
 
-.dashboard .sidebar li:hover {
-  color: #007bff;
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
 }
 
-.dashboard .main-content {
-  flex: 1;
+.main-content {
+  flex-grow: 1;
   padding: 20px;
 }
 
-.dashboard.charts {
+.charts {
   display: flex;
   justify-content: space-around;
-  margin-top: 20px;
-}
-.sidebar link a {
-  text-decoration: none;
-  color: #ffffff; /* Change to your preferred link color */
-  padding: 5px 10px; /* Add padding for clickable area */
-  border-radius: 5px; /* Rounded corners for links */
-  transition: background-color 0.3s; /* Smooth transition for hover */
-}
-.sidebar li {
-  margin: 15px 0; /* Space between list items */
-}
-
-.sidebar a {
-  color: #ffffff; /* White link color */
-  text-decoration: none; /* Remove underline from links */
-  font-size: 18px; /* Font size for links */
 }

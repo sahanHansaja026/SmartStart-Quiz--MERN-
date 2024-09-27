@@ -15,6 +15,8 @@ import EditPost from "./pages/editquestion";
 import QuestionDeatails from "./pages/questionDeatails";
 import BarChart from "./pages/chart";
 import Dashboard from "./pages/dashboard";
+import About from "./pages/about";
+import Search from "./pages/search";
 
 const App = () => {
   const location = useLocation();
@@ -31,16 +33,17 @@ const App = () => {
         <Route exact path="/register" element={<Signup />} />
         <Route exact path="/create" element={<Create />} />
         <Route exact path="/home" element={<Home />} />
-        <Route exact path="/chart"element={<BarChart/>}/>
-        <Route exact path="/dashboard"element={<Dashboard/>}/>
+        <Route exact path="/chart" element={<BarChart />} />
+        <Route path="/dashboard/*" element={<Dashboard />} />
         <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/search" element={<Search />} />
         <Route path="/quiz/:card_id" element={<Quiz />} />
         <Route path="/curds/:id" element={<CurdsPage />} />
-        <Route path="score/:card_id" element={<ScorePage/>}/>
+        <Route path="score/:card_id" element={<ScorePage />} />
         <Route path="/post/:id" element={<QuizCard />} />
-        <Route path="/edit/:id"element={<EditPost/>}/>
-        <Route path="/getquestion/:id"element={<QuestionDeatails/>}/>
-
+        <Route path="/edit/:id" element={<EditPost />} />
+        <Route path="/getquestion/:id" element={<QuestionDeatails />} />
       </Routes>
     </div>
   );

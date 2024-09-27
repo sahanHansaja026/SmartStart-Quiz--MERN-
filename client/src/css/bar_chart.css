@@ -1,0 +1,21 @@
+/* src/css/bar_chart.css */
+
+.chart-container {
+    width: 100%; /* Full width */
+    max-width: 400px; /* Maximum width */
+    margin-left: 20px; /* Center the container */
+    padding: 20px; /* Padding around the chart */
+    background-color: transparent; /* Light background for contrast */
+    border-radius: 10px; /* Rounded corners */
+    /* Subtle shadow */
+}
+
+.chart-title {
+    text-align: center; /* Center align the title */
+    font-size: 24px; /* Title font size */
+    color: #00ff08; /* Dark gray color for the title */
+    margin-bottom: 20px; /* Space between title and chart */
+}
+.chartshow{
+    display: flex;
+}
