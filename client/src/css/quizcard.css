@@ -1,6 +1,6 @@
   
   .quiz-card {
-    background: linear-gradient(135deg, #1e1e1e, #3a3a3a); /* Dark gradient background */
+    background: linear-gradient(135deg, #1e1e1e, #3a3a3a); 
     color: white;
     padding: 30px;
     border-radius: 15px;
@@ -11,7 +11,7 @@
     margin-top: -50px;
   }
   .quiz-cardsummery {
-    background: transparent; /* Dark gradient background */
+    background: transparent; 
     color: white;
     padding: 30px;
     border-radius: 15px;
@@ -22,7 +22,7 @@
     font-size: 25px;
   }
   .quiz-card:hover {
-    transform: scale(1.02); /* Slight zoom on hover */
+    transform: scale(1.02); 
   }
   
   .quiz-card .quiz-header {
@@ -31,12 +31,12 @@
   }
   
   .quiz-card h1 {
-    color: #fdfdfd; /* Bright green for the movie title */
+    color: #fdfdfd; 
     font-size: 2.5rem;
   }
   
   .quiz-card .instructions {
-    background-color: rgba(76, 175, 80, 0.3); /* Light green background for instructions */
+    background-color: rgba(76, 175, 80, 0.3); 
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -44,7 +44,7 @@
   }
   
   .quiz-card h2 {
-    color: #ff0000; /* Bright green for headings */
+    color: #ff0000; 
     font-size: 45px;
     margin-bottom: 10px;
     font-weight: bold;
@@ -71,7 +71,7 @@
   }
   
   .quiz-card .quiz-button {
-    background-color: #fa0e02; /* Green button */
+    background-color: #fa0e02; 
     color: white;
     border: none;
     padding: 12px 20px;
@@ -82,8 +82,8 @@
   }
   
   .quiz-card.quiz-button:hover {
-    background-color: #fa0e02; /* Darker green on hover */
-    transform: translateY(-2px); /* Lift button slightly on hover */
+    background-color: #fa0e02; 
+    transform: translateY(-2px); 
   }
   .quiz-card link a{
     font-size: 25px;
@@ -92,9 +92,9 @@
   
   .quiz-card a {
     text-decoration: none;
-    color: #ffffff; /* Change to your preferred link color */
-    padding: 5px 10px; /* Add padding for clickable area */
-    border-radius: 5px; /* Rounded corners for links */
+    color: #ffffff; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
     transition: background-color 0.3s;
-    font-size: 25px; /* Smooth transition for hover */
+    font-size: 25px; 
   }

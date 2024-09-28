@@ -9,7 +9,7 @@ const routerrees = express.Router();
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     if (file.fieldname === "image") {
-      cb(null, path.join(__dirname, "../client/src/profile")); // for images
+      cb(null, path.join(__dirname, "../client/src/profile")); 
     } else {
       cb(new Error("Invalid fieldname"), null);
     }
@@ -75,14 +75,13 @@ routerrees.post(
 // Get posts by email
 routerrees.get("/profiles", async (req, res) => {
   try {
-    const { email } = req.query; // Get email from query parameters
+    const { email } = req.query; 
 
-    // Validate email
     if (!email) {
       return res.status(400).json({ success: false, message: "Email is required" });
     }
 
-    const userProfile = await Posts.findOne({ email }); // Ensure Posts is the correct model
+    const userProfile = await Posts.findOne({ email }); 
 
     if (!userProfile) {
       return res.status(404).json({ success: false, message: "User not found" });
@@ -98,7 +97,6 @@ routerrees.get("/profiles", async (req, res) => {
     return res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
-
 
 
 // get a specific post by ID
@@ -117,18 +115,13 @@ routerrees.get("/profile/:id", async (req, res) => {
   }
 });
 
-// update post
 // Update post by email
 routerrees.put("/profile/update/email", async (req, res) => {
   try {
     const { email, first_name, last_name, phone, DOB, job, about } = req.body;
-
-    // Validate email
     if (!email) {
       return res.status(400).json({ error: "Email is required" });
     }
-
-    // Prepare an object with fields to update
     const updateData = {};
     if (first_name) updateData.first_name = first_name;
     if (last_name) updateData.last_name = last_name;
@@ -136,22 +129,40 @@ routerrees.put("/profile/update/email", async (req, res) => {
     if (DOB) updateData.DOB = DOB;
     if (job) updateData.job = job;
     if (about) updateData.about = about;
-
     const updatedPost = await Posts.findOneAndUpdate(
-      { email }, // Find by email
-      { $set: updateData }, // Update fields
-      { new: true } // Return the updated document
+      { email }, 
+      { $set: updateData }, 
+      { new: true } 
     );
-
     if (!updatedPost) {
       return res.status(404).json({ success: false, message: "User not found" });
     }
-
     return res.status(200).json({ success: "Post updated successfully", updatedPost });
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 });
+
+const UserProfile = require("../models/profile");
+
+routerrees.get("/userprofile/summary", async (req, res) => {
+  try {
+    const totalStudents = await Posts.countDocuments({ job: "Student" });
+    const totalAdmins = await Posts.countDocuments({
+      job: { $in: ["Teacher", "Lecturer"] },
+    });
+
+    return res.status(200).json({
+      success: true,
+      totalStudents,
+      totalAdmins,
+    });
+  } catch (error) {
+    console.error("Error fetching user summary:", error);
+    return res.status(500).json({ error: "Server error, please try again" });
+  }
+});
+
 
 
 module.exports = routerrees;

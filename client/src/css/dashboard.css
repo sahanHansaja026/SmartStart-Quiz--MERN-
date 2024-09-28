@@ -1,7 +1,9 @@
 /* src/css/dashboard.css */
+
 .dashboard {
   display: flex;
-  height: 100vh;
+  height: 100vh; /* Full height of the viewport */
+  overflow: hidden; /* Prevent overflow of the entire dashboard */
 }
 
 .sidebar {
@@ -9,6 +11,15 @@
   background-color: #333;
   color: #fff;
   padding: 20px;
+  font-size: 25px;
+  overflow-y: scroll; /* Allow scrolling */
+  scrollbar-width: none; /* For Firefox */
+}
+.sidebar h2{
+  color: white;
+}
+.sidebar::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }
 
 .sidebar ul {
@@ -25,12 +36,33 @@
   text-decoration: none;
 }
 
+.sidebar ul li a:hover {
+  color: #04f73d;
+}
+
 .main-content {
   flex-grow: 1;
   padding: 20px;
+  background-color: transparent; /* Optional: Add a background color for better contrast */
+  overflow-y: scroll; /* Allow scrolling */
+  scrollbar-width: none; /* For Firefox */
 }
 
-.charts {
-  display: flex;
-  justify-content: space-around;
+.main-content::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.sidebar .open-modal-btn {
+  background-color: #04f73d;
+  color: red;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 10px 15px; /* Add padding for better button appearance */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Optional: Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.sidebar .open-modal-btn:hover {
+  background-color: #03e62f; /* Slightly darker shade on hover */
 }

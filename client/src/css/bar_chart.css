@@ -1,21 +1,55 @@
-/* src/css/bar_chart.css */
-
+.charts{
+   font-size: 25px;
+   display: block;
+}
+.charts .top_of_dash{
+    display: flex;
+    gap: 45px;
+}
+.charts .dashbox1{
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    width: 400px;
+    height: 105px;
+    background-color: rgb(62, 62, 62);
+    color: rgb(255, 255, 255);
+}
+.dashbox1 img{
+    width: 30%;
+    margin-left: -105px;
+}
+.info{
+    margin-left: 20px;
+}
+.info h4{
+    margin-top: 15px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+}
+.info p{
+    margin-top: -20px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+}
 .chart-container {
-    width: 100%; /* Full width */
-    max-width: 400px; /* Maximum width */
-    margin-left: 20px; /* Center the container */
-    padding: 20px; /* Padding around the chart */
-    background-color: transparent; /* Light background for contrast */
-    border-radius: 10px; /* Rounded corners */
-    /* Subtle shadow */
+    margin-top: 25px;
+    height: 400px; 
+    width: 600px; 
+    padding: 20px; 
+    background-color: rgb(62, 62, 62); 
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+
 }
 
 .chart-title {
-    text-align: center; /* Center align the title */
-    font-size: 24px; /* Title font size */
-    color: #00ff08; /* Dark gray color for the title */
-    margin-bottom: 20px; /* Space between title and chart */
+    text-align: center; 
+    font-size: 24px; 
+    color: #00ff08; 
+    margin-bottom: 20px; 
 }
-.chartshow{
+.charts .tableshow{
     display: flex;
+    gap: 25px;
 }

@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px; /* Adjust padding as needed */
-  background-color: #282e27; /* Change to your preferred background color */
+  padding: 10px 20px; 
+  background-color: #282e27; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: white;
 }
@@ -23,21 +23,21 @@
   display: flex;
   align-items: center;
   margin-right: auto;
-  width: 100px; /* Pushes the links to the right */
+  width: 100px; 
 }
 
 .profile-image {
-  width: 60px; /* Adjust size as needed */
-  height: 60px; /* Adjust size as needed */
-  border-radius: 50%; /* Makes the image circular */
+  width: 60px; 
+  height: 60px; 
+  border-radius: 50%; 
   margin-right: 10px;
-  border:3px solid green; /* Space between image and name */
+  border:3px solid green; 
 }
 
 .user-name {
   font-weight: bold;
   font-size: 20px;
-  width: 100px; /* Makes the name stand out */
+  width: 100px; 
 }
 
 .navbar-links {
@@ -45,17 +45,17 @@
   gap: 15px;
   margin-left: 800px;
   font-weight: bold;
-  font-size: 30px; /* Space between links */
+  font-size: 30px; 
 }
 
 .navbar-links a {
   text-decoration: none;
-  color: #ffffff; /* Change to your preferred link color */
-  padding: 5px 10px; /* Add padding for clickable area */
-  border-radius: 5px; /* Rounded corners for links */
-  transition: background-color 0.3s; /* Smooth transition for hover */
+  color: #ffffff; 
+  padding: 5px 10px; 
+  border-radius: 5px; 
+  transition: background-color 0.3s; 
 }
 
 .navbar-links a:hover {
-  color: #04f73d; /*rgb(0, 249, 75) on hover */
+  color: #04f73d; 
 }

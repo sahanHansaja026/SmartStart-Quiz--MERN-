@@ -5,7 +5,7 @@ const User = require('../models/User');
 
 const router = express.Router();
 const saltRounds = 10;
-const secretKey = 'secretkey'; // Prefer using environment variables
+const secretKey = 'secretkey'; 
 
 // Register User
 router.post('/register', async (req, res) => {
@@ -41,16 +41,13 @@ router.post('/login', async (req, res) => {
     }
   
     try {
-      // Find the user by email
       const user = await User.findOne({ email });
       if (!user) return res.status(404).json({ error: 'User not found' });
   
-      // Compare the provided password with the stored hash
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) return res.status(401).json({ error: 'Incorrect password' });
   
-      // Generate JWT token
-      const token = jwt.sign({ userId: user._id, username: user.username }, 'secretkey', { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user._id, username: user.username }, 'secretkey', { expiresIn: '12h' });
   
       res.status(200).json({ success: true, message: 'Login successful', token });
     } catch (error) {

@@ -97,7 +97,6 @@ const Quiz = () => {
   return (
     <div className="quiz-container">
       <h1 className="quiz-title">Quiz Page</h1>
-      <p className="quiz-card-id">Card ID: <span>{card_id}</span></p>
 
       <div className="question-numbers">
         {posts.map((_, index) => (
@@ -111,11 +110,9 @@ const Quiz = () => {
             {index + 1}
           </button>
         ))}
-      </div>
-
-      <h2 className="quiz-subtitle">Post Details:</h2>
+      </div> 
       <div className="quiz-question">
-        <p><b>Question:</b> {post.question}</p>
+        <h2><b>{post.question}</b></h2>
         <div className="quiz-answers">
           {[post.answer_1, post.answer_2, post.answer_3, post.answer_4].map((answer, index) => (
             <label key={index}>

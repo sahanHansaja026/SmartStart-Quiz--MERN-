@@ -18,7 +18,6 @@ router.post("/score/save", async (req, res) => {
     res.status(201).json({ message: "Score saved successfully!" });
   } catch (error) {
     if (error.code === 11000) {
-      // Duplicate key error code
       res
         .status(400)
         .json({
@@ -32,9 +31,8 @@ router.post("/score/save", async (req, res) => {
 
 // GET all scores for the current user
 router.get("/scores", async (req, res) => {
-  const { email } = req.query; // Get the email from query parameters
+  const { email } = req.query; 
   try {
-    // Find scores for the current user (matching the email)
     const scores = await Score.find({ email: email });
     res.json(scores);
   } catch (err) {
@@ -43,7 +41,32 @@ router.get("/scores", async (req, res) => {
 });
 
 
+// Route to get top 5 most used cardId
+router.get("/top-card-ids", async (req, res) => {
+  try {
+    const topCardIds = await Score.aggregate([
+      {
+        // Group by cardId and count occurrences
+        $group: {
+          _id: "$cardId",
+          count: { $sum: 1 },
+        },
+      },
+      {
+        // Sort by count in descending order
+        $sort: { count: -1 },
+      },
+      {
+        // Limit to top 5
+        $limit: 5,
+      },
+    ]);
 
+    res.status(200).json(topCardIds);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch top card IDs" });
+  }
+});
 
 
 module.exports = router;

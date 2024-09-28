@@ -27,7 +27,7 @@
 }
 
 .input_sub .cardshowimage:hover {
-  border-color: #007bff; /* Change border color on hover */
+  border-color: #007bff; 
 }
 
 .input_sub .default-profile-picture {
@@ -39,8 +39,8 @@
 
 .input_sub .cardshowimage img {
   width: 350px;
-  height: 350px; /* Ensure image doesn't exceed the container width */
-  height: auto; /* Maintain aspect ratio */
+  height: 350px; 
+  height: auto;
   border-radius: 0px;
 }
 
@@ -75,9 +75,9 @@
 }
 .input_sub input[type="text"]:focus,
 .input_sub textarea:focus {
-  border-color: transparent; /* Highlight border on focus */
+  border-color: transparent; 
   outline: none;
-  background-color: transparent; /* Remove outline */
+  background-color: transparent; 
 }
 
 .input_sub button {
@@ -89,18 +89,17 @@
   cursor: pointer;
   font-size: 25px;
 }
-/* Style for placeholder text in text input fields */
+
 .input_sub input[type="text"]::placeholder {
-  color: #3d3d3d; /* Light gray color for placeholder */
+  color: #3d3d3d; 
   opacity: 1;
   font-size: 35px;
-  font-weight: bold;  /* Ensure opacity is 1 for consistent appearance */
+  font-weight: bold;  
 }
 
-/* Style for placeholder text in textarea */
 .input_sub textarea::placeholder {
-  color: #3d3d3d; /* Light gray color for placeholder */
+  color: #3d3d3d; 
   opacity: 1;
   font-size: 28px;
-  font-weight: bold;  /* Ensure opacity is 1 for consistent appearance */
+  font-weight: bold; 
 }

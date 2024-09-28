@@ -1,9 +1,7 @@
-/* quiz.css */
-
 body {
   font-family: Arial, sans-serif;
-  background-color: #1b1b1b; /* Black background */
-  color: #ffffff; /* White text */
+  background-color: #1b1b1b; 
+  color: #ffffff; 
   margin: 0;
   padding: 0;
 }
@@ -12,13 +10,13 @@ body {
   max-width: 800px;
   margin: 50px auto;
   padding: 20px;
-  background-color: #2d2d2d; /* Dark grey for container */
+  background-color: #2d2d2d; 
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .quiz-title {
-  color: #00ff00; /* Bright green */
+  color: #00ff00; 
   text-align: center;
   font-size: 2.5em;
   margin-bottom: 10px;
@@ -36,37 +34,38 @@ body {
 }
 
 .question-number {
-  background-color: #00ff00; /* Green */
-  color: #000000; /* Black */
+  background-color: #00ff00; 
+  color: #000000; 
   border: none;
   padding: 10px;
-  margin: 5px;
-  border-radius: 50%;
+  margin: 10px;
+  border-radius: 10%;
   font-size: 1.2em;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-weight: bold;
+  width: 40px;
 }
 
 .question-number.correct {
   background-color: #0f00b3;
-  color: rgb(255, 255, 255); /* Darker green for correct answers */
+  color: rgb(255, 255, 255); 
 }
 
 .question-number.incorrect {
   background-color: #ff3333;
-  color: white; /* Red for incorrect answers */
+  color: white; 
 }
 
 .question-number:hover {
-  background-color: #33ff33; /* Lighter green on hover */
+  background-color: #33ff33;
 }
 
 .quiz-subtitle {
   font-size: 1.5em;
   margin-bottom: 20px;
   text-align: center;
-  color: #00ff00; /* Green for subtitle */
+  color: #00ff00; 
 }
 
 .quiz-question p {
@@ -88,7 +87,7 @@ body {
 
 .correct-answer {
   font-weight: bold;
-  color: #00ff00; /* Green for correct answer text */
+  color: #00ff00; 
   margin-top: 20px;
 }
 
@@ -100,9 +99,9 @@ body {
 
 .previous-button,
 .next-button {
-  background-color: #00ff00; /* Green buttons */
+  background-color: #00ff00; 
   border: none;
-  color: #1b1b1b; /* Black text */
+  color: #1b1b1b; 
   padding: 10px 20px;
   font-size: 1.1em;
   border-radius: 5px;
@@ -112,11 +111,11 @@ body {
 
 .previous-button:hover,
 .next-button:hover {
-  background-color: #33ff33; /* Lighter green on hover */
+  background-color: #33ff33; 
 }
 
 .previous-button:disabled,
 .next-button:disabled {
-  background-color: #666666; /* Grey for disabled buttons */
+  background-color: #666666; 
   cursor: not-allowed;
 }
