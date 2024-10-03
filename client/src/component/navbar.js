@@ -72,6 +72,7 @@ function Navbar() {
               <Link to="/dashboard">Dashboard</Link>
               <Link to="/about">About Us</Link>
               <Link to="/search">Search</Link>
+              <Link to="/profile">profile</Link>
               <Link to="/">Logout</Link>
             </>
           ) : (

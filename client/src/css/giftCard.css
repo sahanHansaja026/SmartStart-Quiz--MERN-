@@ -35,7 +35,7 @@
   margin-top: 10px;
 }
 
-button:hover {
+.gift-card-content button:hover {
   background-color: #f4f6f4;
 }
 .gift-card-image img {

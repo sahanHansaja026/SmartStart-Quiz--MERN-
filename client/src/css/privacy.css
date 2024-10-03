@@ -12,30 +12,30 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
   
-  h1 {
+  .privacy-policy-container h1 {
     text-align: center;
     color: #fffefe;
   }
   
-  h2 {
+  .privacy-policy-container h2 {
     margin-top: 20px;
     color: #007BFF;
   }
   
-  h3 {
+  .privacy-policy-container h3 {
     margin-top: 15px;
     color: #0056b3;
   }
   
-  p, ul {
+  .privacy-policy-container p, ul {
     color: #b4b4b4;
   }
   
-  ul {
+  .privacy-policy-container ul {
     padding-left: 20px;
   }
   
-  li {
+  .privacy-policy-container li {
     margin-bottom: 10px;
   }
   
