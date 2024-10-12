@@ -1,18 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import authService from '../services/authService';
+import authService from "../services/authService";
 import "../css/profile.css";
 
-const importAll = (r) => {
-  let images = {};
-  r.keys().forEach((item) => {
-    images[item.replace('./', '')] = r(item);
-  });
-  return images;
-};
-
-const images = importAll(require.context('../profile', false, /\.(png|jpe?g|svg)$/));
-
+// Class-based React Component for Profile
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -67,7 +58,7 @@ class Profile extends Component {
       }));
       this.fetchExistingProfile(userData.email);
     } catch (error) {
-      console.error('Failed to fetch user data', error);
+      console.error("Failed to fetch user data", error);
     }
   };
 
@@ -81,7 +72,7 @@ class Profile extends Component {
           newPost: {
             ...this.state.newPost,
             ...userProfile,
-            imageUrl: userProfile.image ? images[userProfile.image] : "",
+            imageUrl: userProfile.image ? `http://localhost:9000/Profileimge/${userProfile.image}` : "",
           },
         });
       }
@@ -156,7 +147,6 @@ class Profile extends Component {
       });
   };
 
-  // New function to handle image click
   handleImageClick = () => {
     this.fileInputRef.current.click(); // Trigger the file input when the image is clicked
   };
@@ -164,98 +154,94 @@ class Profile extends Component {
   render() {
     return (
       <div className="profile-container">
-        <div className="profile-header">
-          <h1>Profile</h1>
-        </div>
-        <div className="profile-content">
-          <div className="profile-picture" onClick={this.handleImageClick}>
-            {this.state.newPost.imageUrl ? (
-              <img src={this.state.newPost.imageUrl} alt="Profile" />
-            ) : (
-              <div className="default-profile-picture">No Image</div>
-            )}
-          </div>
-          <form onSubmit={this.handleSubmit} className="profile-form">
-            <div className="form-group">
-              <label>First Name:</label>
-              <input
-                type="text"
-                name="first_name"
-                value={this.state.newPost.first_name}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label>Last Name:</label>
-              <input
-                type="text"
-                name="last_name"
-                value={this.state.newPost.last_name}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label>Email:</label>
-              <span>{this.state.newPost.email}</span>
-            </div>
-            <div className="form-group">
-              <label>Phone:</label>
-              <input
-                type="text"
-                name="phone"
-                value={this.state.newPost.phone}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label>DOB:</label>
-              <input
-                type="date"
-                name="DOB"
-                value={this.state.newPost.DOB}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label>Job Category:</label>
-              <select
-                name="job"
-                value={this.state.newPost.job}
-                onChange={this.handleChange}
-              >
-                <option value="">Select a category</option>
-                <option value="Teacher">Teacher</option>
-                <option value="Student">Student</option>
-                <option value="Lecturer">Lecturer</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label>About Yourself:</label>
-              <textarea
-                name="about"
-                value={this.state.newPost.about}
-                onChange={this.handleChange}
-                placeholder="Write something"
-              />
-            </div>
-            <div className="form-group">
-              <label></label>
-              <input
-                type="file"
-                name="image"
-                accept=".png, .jpg, .jpeg"
-                onChange={this.handleImageChange}
-                ref={this.fileInputRef} // Reference the file input
-                style={{ display: 'none' }} // Hide the input element
-              />
-            </div>
-            <button type="submit">
-              {this.state.existingPost ? "Update" : "Create"} Profile
-            </button>
-          </form>
-        </div>
+      <div className="profile-header">
+        <h1>Profile</h1>
       </div>
+      <div className="profile-content">
+        <div className="profile-picture" onClick={this.handleImageClick}>
+          {this.state.newPost.imageUrl ? (
+            <img src={this.state.newPost.imageUrl} alt="Profile" />
+          ) : (
+            <div className="default-profile-picture">No Image</div>
+          )}
+        </div>
+        <form onSubmit={this.handleSubmit} className="profile-form">
+          <div className="form-group">
+            <label>First Name:</label>
+            <input
+              type="text"
+              name="first_name"
+              value={this.state.newPost.first_name}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Last Name:</label>
+            <input
+              type="text"
+              name="last_name"
+              value={this.state.newPost.last_name}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Phone:</label>
+            <input
+              type="text"
+              name="phone"
+              value={this.state.newPost.phone}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>DOB:</label>
+            <input
+              type="date"
+              name="DOB"
+              value={this.state.newPost.DOB}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Job Category:</label>
+            <select
+              name="job"
+              value={this.state.newPost.job}
+              onChange={this.handleChange}
+            >
+              <option value="">Select a category</option>
+              <option value="Teacher">Teacher</option>
+              <option value="Student">Student</option>
+              <option value="Lecturer">Lecturer</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label>About Yourself:</label>
+            <textarea
+              name="about"
+              value={this.state.newPost.about}
+              onChange={this.handleChange}
+              placeholder="Write something"
+            />
+          </div>
+          <div className="form-group">
+            <label></label>
+            <input
+              type="file"
+              name="image"
+              accept=".png, .jpg, .jpeg"
+              onChange={this.handleImageChange}
+              ref={this.fileInputRef} // Reference the file input
+              style={{ display: 'none' }} // Hide the input element
+            />
+          </div>
+          <button type="submit">
+            {this.state.existingPost ? "Update" : "Create"} Profile
+          </button>
+        </form>
+      </div>
+    </div>
     );
   }
 }

@@ -4,14 +4,6 @@ import authService from '../services/authService';
 import axios from 'axios';
 import '../css/navbar.css'; // Ensure this file exists for styling
 
-const importAll = (r) => {
-  let images = {};
-  r.keys().forEach((item) => { images[item.replace('./', '')] = r(item); });
-  return images;
-};
-
-const images = importAll(require.context('../profile', false, /\.(png|jpe?g|svg)$/));
-
 function Navbar() {
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
@@ -23,9 +15,12 @@ function Navbar() {
         setUser(userData); // Set user data if available
         if (userData && userData.email) {
           fetchUserProfile(userData.email); // Fetch user profile if email exists
+        } else {
+          setUserProfile(null); // If no user data, show default image
         }
       } catch (error) {
-        console.error('Failed to fetch user data', error);
+        console.error("Failed to fetch user data", error);
+        setUserProfile(null); // On error, set profile to null to show default image
       }
     };
 
@@ -34,14 +29,17 @@ function Navbar() {
 
   const fetchUserProfile = async (email) => {
     try {
-      const response = await axios.get(`http://localhost:9000/profiles?email=${email}`);
-      if (response.data.success) {
+      const response = await axios.get(
+        `http://localhost:9000/profiles?email=${email}`
+      );
+      if (response.data.success && response.data.userProfile) {
         setUserProfile(response.data.userProfile); // Update state with user profile data
       } else {
-        console.error("Failed to fetch user profile:", response.data.message);
+        setUserProfile(null); // No profile found, set to null
       }
     } catch (error) {
-      console.error('Failed to fetch user profile:', error.response ? error.response.data : error.message);
+      console.error("Failed to fetch user profile:", error);
+      setUserProfile(null); // On error, set profile to null
     }
   };
   
@@ -53,13 +51,17 @@ function Navbar() {
           <div className="user-info">
             <div className="user-profile">
               <Link to="/profile"> {/* Wrap the profile image in a Link component */}
-                {userProfile.image && images[userProfile.image] && (
-                  <img 
-                    src={images[userProfile.image]} 
-                    alt="Profile" 
-                    className="profile-image" 
-                  />
-                )}
+          
+                  <img
+                  src={
+                    userProfile && userProfile.image
+                      ? `http://localhost:9000/Profileimge/${userProfile.image}` // Profile image from backend
+                      : `http://localhost:9000/Profileimge/default.png` // Default image
+                  }
+                  alt="Profile"
+                  className="profile-image"
+                />
+                
               </Link>
               <br/>
             </div>

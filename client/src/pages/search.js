@@ -63,10 +63,14 @@ export default class Search extends Component {
           {posts.map((post) => (
             <a href={`/post/${post._id}`} className="card" key={post._id}>
               <div className="card-image">
-                <img
-                  src={post.image ? require(`../uploads/${post.image}`) : ""}
-                  alt={post.image}
-                />
+              <img
+                    src={
+                      post.image
+                        ? `http://localhost:9001/Uploads/${post.image}`
+                        : ""
+                    }
+                    alt={post.image ? post.image : "No Image"}
+                  />
               </div>
               <div className="card-header">
                 <h3>

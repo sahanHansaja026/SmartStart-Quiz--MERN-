@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const path =require("path");
 
 // Import routes
 const postRouter = require("./routes/question");
@@ -25,6 +26,9 @@ app.use(profileRouter);
 app.use(scoreRouter);
 app.use(SearchRouter);
 app.use(DashRouter);
+
+app.use("/Uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/Profileimge", express.static(path.join(__dirname, "profile")));
 
 mongoose
   .connect("mongodb://localhost:27017/quiz_system", {

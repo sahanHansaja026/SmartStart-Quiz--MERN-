@@ -116,32 +116,55 @@ routerrees.get("/profile/:id", async (req, res) => {
 });
 
 // Update post by email
-routerrees.put("/profile/update/email", async (req, res) => {
-  try {
-    const { email, first_name, last_name, phone, DOB, job, about } = req.body;
-    if (!email) {
-      return res.status(400).json({ error: "Email is required" });
+// Route to update profile by email, with optional image upload
+routerrees.put(
+  "/profile/update/email",
+  upload.single("image"), // Handle image upload during update
+  async (req, res) => {
+    try {
+      const { email, first_name, last_name, phone, DOB, job, about } = req.body;
+
+      // Validate email is provided
+      if (!email) {
+        return res.status(400).json({ error: "Email is required" });
+      }
+
+      // Prepare data to update
+      const updateData = {};
+      if (first_name) updateData.first_name = first_name;
+      if (last_name) updateData.last_name = last_name;
+      if (phone) updateData.phone = phone;
+      if (DOB) updateData.DOB = DOB;
+      if (job) updateData.job = job;
+      if (about) updateData.about = about;
+
+      // If a new image is uploaded, update the image field
+      if (req.file) {
+        updateData.image = req.file.filename;
+      }
+
+      // Update the profile based on the email
+      const updatedPost = await Posts.findOneAndUpdate(
+        { email },
+        { $set: updateData },
+        { new: true } // Return the updated document
+      );
+
+      if (!updatedPost) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+
+      return res.status(200).json({
+        success: "Profile updated successfully",
+        updatedPost,
+      });
+    } catch (error) {
+      console.error("Error updating profile:", error.message);
+      return res.status(500).json({ error: "Internal server error" });
     }
-    const updateData = {};
-    if (first_name) updateData.first_name = first_name;
-    if (last_name) updateData.last_name = last_name;
-    if (phone) updateData.phone = phone;
-    if (DOB) updateData.DOB = DOB;
-    if (job) updateData.job = job;
-    if (about) updateData.about = about;
-    const updatedPost = await Posts.findOneAndUpdate(
-      { email }, 
-      { $set: updateData }, 
-      { new: true } 
-    );
-    if (!updatedPost) {
-      return res.status(404).json({ success: false, message: "User not found" });
-    }
-    return res.status(200).json({ success: "Post updated successfully", updatedPost });
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
   }
-});
+);
+
 
 const UserProfile = require("../models/profile");
 
