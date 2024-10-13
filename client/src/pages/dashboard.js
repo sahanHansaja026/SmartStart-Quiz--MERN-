@@ -5,7 +5,8 @@ import Reports from "../component/report";
 import Analytics from "../component/analatic"; // Correct spelling
 import Privacy from "../component/privacy";
 import Count from "../component/count";
-import GiftCard from "../component/GiftCard"; // Import GiftCard component
+import GiftCard from "../component/GiftCard";
+import Aiservice from "../component/AITextGenerator"; // Import GiftCard component
 import "../css/dashboard.css";
 
 const Dashboard = () => {
@@ -36,6 +37,9 @@ const Dashboard = () => {
           <li>
             <Link to="/dashboard/privacy">Privacy</Link>
           </li>
+          <li>
+            <Link to="/dashboard/aiservice">Use Ai</Link>
+          </li>
         </ul>
         {/* Button to open the gift card modal */}
         <button className="open-modal-btn" onClick={openGiftCardModal}>
@@ -49,6 +53,7 @@ const Dashboard = () => {
           <Route path="/reports" element={<Reports />} />
           <Route path="/count" element={<Count />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/aiservice" element={<Aiservice />} />
           <Route path="*" element={<Navigate to="/dashboard/analytics" />} />
         </Routes>
       </main>

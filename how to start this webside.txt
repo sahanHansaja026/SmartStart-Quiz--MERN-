@@ -1,0 +1,7 @@
+npm run dev (for websitde)
+
+{AI runing}
+
+cd ai_service (navigate ai_service folder)
+
+python ai_service.py (run Ai)
