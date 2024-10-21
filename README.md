@@ -114,13 +114,3 @@ The application will be available at `http://localhost:3000`.
 }
 ```
 
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-```
-
-### Image Placement:
-- Replace `./assets/smartstart-logo.png` and other image paths with the actual paths to the images in your repository.
-- Include screenshots for key features like profile updates, quiz creation, quiz participation, and the dashboard for better visualization.
-
-Make sure to add these image files to your GitHub repository, typically inside an `assets` folder, to ensure they are visible in your `README.md`.
