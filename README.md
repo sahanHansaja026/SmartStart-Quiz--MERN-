@@ -1,5 +1,10 @@
 # SmartStart Quiz
 
+![Landing page Screenshot](https://github.com/sahan026/images/blob/main/landing.png)
+![home page Screenshot](https://github.com/sahan026/images/blob/main/quiz%20homepage%201.png)
+![question page Screenshot](https://github.com/sahan026/images/blob/main/quesions%20page.png)
+
+   
 SmartStart Quiz is an interactive MERN stack-based platform where users can create quizzes, take quizzes, and track their performance via a personalized dashboard. The platform is designed to allow anyone to participate, and it offers a seamless experience for both quiz creation and participation.
 
 ## Table of Contents
@@ -10,19 +15,18 @@ SmartStart Quiz is an interactive MERN stack-based platform where users can crea
 - [Usage](#usage)
 - [API Routes](#api-routes)
 - [Front-End Dependencies](#front-end-dependencies)
-- [License](#license)
 
 ## Features
 
 - **User Authentication**: Secure login and registration using JWT.
 - **Profile Update**: Users can update their profile information, including avatars.
-  ![Profile Update Screenshot](./assets/profile-update.png) <!-- Add a screenshot of the profile update feature -->
+  ![Profile Update Screenshot](https://github.com/sahan026/images/blob/main/quiz%20profile%20update.png) <!-- Add a screenshot of the profile update feature -->
 - **Quiz Creation**: Any user can create new quizzes, making the platform community-driven.
-  ![Create Quiz Screenshot](./assets/create-quiz.png) <!-- Add a screenshot of the quiz creation page -->
+  ![Create Quiz Screenshot](https://github.com/sahan026/images/blob/main/create%20quiz.png) <!-- Add a screenshot of the quiz creation page -->
 - **Take Quizzes**: Users can take any quiz and receive immediate feedback.
-  ![Take Quiz Screenshot](./assets/take-quiz.png) <!-- Add a screenshot of the quiz-taking page -->
+  ![Take Quiz Screenshot](https://github.com/sahan026/images/blob/main/attemp%20quiz.png) <!-- Add a screenshot of the quiz-taking page -->
 - **Dashboard**: Each user has a personalized dashboard to track their quiz history and performance.
-  ![Dashboard Screenshot](./assets/dashboard.png) <!-- Add a screenshot of the dashboard -->
+  ![Dashboard Screenshot](https://github.com/sahan026/images/blob/main/dashboard.png) <!-- Add a screenshot of the dashboard -->
 - **Responsive Design**: Optimized for mobile and desktop devices.
 
 ## Technologies Used
@@ -71,22 +75,6 @@ SmartStart Quiz is an interactive MERN stack-based platform where users can crea
 
 The application will be available at `http://localhost:3000`.
 
-## Usage
-
-1. **User Registration & Login**: Users can sign up and log in securely.
-   ![User Login Screenshot](./assets/login.png) <!-- Add a screenshot of the login page -->
-   
-2. **Profile Update**: After logging in, users can update their profile, including uploading an avatar.
-   ![Profile Update Screenshot](./assets/profile-update.png) <!-- Add a screenshot of the profile update feature -->
-   
-3. **Create a Quiz**: Any logged-in user can create quizzes, including adding multiple questions and options.
-   ![Create Quiz Screenshot](./assets/create-quiz.png) <!-- Add a screenshot of the quiz creation page -->
-   
-4. **Take Quizzes**: Users can select quizzes from various categories and complete them, with real-time scoring.
-   ![Take Quiz Screenshot](./assets/take-quiz.png) <!-- Add a screenshot of the quiz-taking page -->
-   
-5. **Dashboard**: Users can view their past quizzes, scores, and performance graphs in the dashboard.
-   ![Dashboard Screenshot](./assets/dashboard.png) <!-- Add a screenshot of the dashboard -->
 
 ## API Routes
 
